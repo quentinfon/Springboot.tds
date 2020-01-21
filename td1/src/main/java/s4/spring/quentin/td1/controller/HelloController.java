@@ -11,7 +11,7 @@ public class HelloController {
 
     @GetMapping("/hello")
     public @ResponseBody String hello(){
-        return "<h1>Bonjour thomas</h1>";
+        return "Hello world";
     }
 
     @GetMapping("/view/hello")
