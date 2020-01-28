@@ -1,16 +1,15 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Liste items</title>
-</head>
-<body>
+{{> ./main/header}}
+
+
 <h2>Liste d'items</h2>
 <a href="/items/new">Ajouter un item</a>
 
-Liste :<br>
+<h1>Liste :</h1>
 
-{{& liste}}
+{{#elements}}
+<div>
+    <h4>{{nom}}</h4> possède une évaluation de : {{evaluation}}
+</div>
+{{/elements}}
 
-</body>
-</html>
+{{> ./main/footer}}

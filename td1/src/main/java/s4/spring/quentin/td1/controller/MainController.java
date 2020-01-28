@@ -46,23 +46,31 @@ public class MainController {
 
     @GetMapping("/items/{cat}")
     public String viewListeItems(ModelMap model, @PathVariable String cat){
-        String liste = "";
 
-        for (Element e : getCat(cat).getListeElement()){
-            liste += " Nom : "+e.getNom()+" avec une evaluation de "+e.getEvaluation()+"<br>";
+        if (getCat(cat) != null) {
+            model.put("elements", getCat(cat).getListeElement());
+            return "listeItems";
+        }else{
+            return "categorieIntrouvable";
         }
-
-        model.put("liste", liste);
-        return "listeItems";
     }
 
     @GetMapping("items/new")
-    public String viewAddItems(){
+    public String viewAddItems(ModelMap model){
+        model.put("categorie", listeCategorie);
         return "formulaireAjout";
     }
 
     @PostMapping("items/addNew")
     public RedirectView addNew(@RequestParam String cat, @RequestParam String nom) {
+        Element e = new Element();
+        e.setNom(nom);
+        getCat(cat).getListeElement().add(e);
+        return new RedirectView("/items");
+    }
+
+    @PostMapping("items/addNew/{cat}")
+    public RedirectView addNewToCat(@PathVariable String cat, @RequestParam String nom) {
         Element e = new Element();
         e.setNom(nom);
         getCat(cat).getListeElement().add(e);

@@ -5,7 +5,14 @@
 
 <form action="/items/addNew"  method="post">
     <p>Nom : <input type="text" name="nom" /></p>
-    <p><input type="submit" value="Cree" /> <input type="reset" value="effacer" /></p>
+
+    <select name="cat">
+        {{#categorie}}
+            <option value="{{libelle}}">{{libelle}}</option>
+        {{/categorie}}
+    </select>
+
+    <p><input class="ui primary button" type="submit" value="Cree" /> <input type="reset" value="effacer" /></p>
 </form>
 
 
