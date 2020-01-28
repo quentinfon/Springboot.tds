@@ -4,6 +4,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.view.RedirectView;
+import s4.spring.quentin.td1.models.Categorie;
 import s4.spring.quentin.td1.models.Element;
 import org.springframework.ui.ModelMap;
 
@@ -18,6 +19,8 @@ import java.util.List;
 public class MainController {
 
     private ArrayList<Element> listElem = new ArrayList<Element>();
+
+    private ArrayList<Categorie> listeCategorie = new ArrayList<Categorie>();
 
     @ModelAttribute("items")
     public List<Element> getItems(){

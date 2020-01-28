@@ -38,5 +38,19 @@ public class Categorie {
             listeElement.remove(e);
         }
     }
+    public void supprimerElement(String s){
+        ArrayList<Element> aSupp = new ArrayList<Element>();
+
+        for (Element e: listeElement){
+            if (e.getNom().equals(s)){
+                aSupp.add(e);
+            }
+        }
+
+        for (Element e : aSupp){
+            listeElement.remove(e);
+        }
+
+    }
 
 }
