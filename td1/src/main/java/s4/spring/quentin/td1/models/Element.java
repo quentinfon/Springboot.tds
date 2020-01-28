@@ -5,6 +5,13 @@ public class Element {
     private String nom;
     private int evaluation = 0;
 
+    public Element(){
+
+    }
+
+    public Element(String s){
+        nom = s;
+    }
 
     public boolean equals(Element e){
         if(e.getNom().equals(this.nom)){

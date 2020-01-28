@@ -1,15 +1,13 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+{{> ./main/header}}
+
+
 <h3>Ajout d'un element</h3>
+
 <form action="/items/addNew"  method="post">
     <p>Nom : <input type="text" name="nom" /></p>
     <p><input type="submit" value="Cree" /> <input type="reset" value="effacer" /></p>
 </form>
 
-</body>
-</html>
+
+
+{{> ./main/footer}}

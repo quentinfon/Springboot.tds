@@ -15,6 +15,7 @@ public class Categorie {
 
     public Categorie(String l){
         libelle = l;
+        listeElement = new ArrayList<Element>();
     }
 
     public String getLibelle() {

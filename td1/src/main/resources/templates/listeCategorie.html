@@ -1,0 +1,27 @@
+{{> ./main/header}}
+
+<div class="ui tabular menu">
+
+    {{#categorie}}
+
+        <div class="item" data-tab="{{libelle}}">{{libelle}}</div>
+
+    {{/categorie}}
+
+</div>
+
+{{#categorie}}
+<div class="ui tab" data-tab="{{libelle}}">
+    {{#listeElement}}
+
+    <h4>{{nom}}</h4>
+    <p> a une evaluation de {{evaluation}}</p>
+
+    {{/listeElement}}
+</div>
+{{/categorie}}
+
+
+
+
+{{> ./main/footer}}
