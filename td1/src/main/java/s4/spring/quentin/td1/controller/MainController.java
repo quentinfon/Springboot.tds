@@ -50,4 +50,73 @@ public class MainController {
         return new RedirectView("/items");
     }
 
+    @GetMapping("/items/inc/{nomElement}")
+    public RedirectView viewIncrementation(@PathVariable String nomElement){
+
+         for (Element e : listElem){
+             if(e.getNom().equals(nomElement)){
+                e.setEvaluation(e.getEvaluation()+1);
+             }
+         }
+
+        return new RedirectView("/items");
+    }
+
+    @GetMapping("/items/inc/{nomElement}/{nb}")
+    public RedirectView viewIncrementationNb(@PathVariable String nomElement, @PathVariable int nb){
+
+         for (Element e : listElem){
+             if(e.getNom().equals(nomElement)){
+                e.setEvaluation(e.getEvaluation()+nb);
+             }
+         }
+
+        return new RedirectView("/items");
+    }
+
+    @GetMapping("/items/dec/{nomElement}")
+    public RedirectView viewDecrementation(@PathVariable String nomElement){
+
+         for (Element e : listElem){
+             if(e.getNom().equals(nomElement)){
+                e.setEvaluation(e.getEvaluation()-1);
+             }
+         }
+
+        return new RedirectView("/items");
+    }
+
+    @GetMapping("/items/dec/{nomElement}/{nb}")
+    public RedirectView viewDecrementationNb(@PathVariable String nomElement, @PathVariable int nb){
+
+        for (Element e : listElem){
+            if(e.getNom().equals(nomElement)){
+                e.setEvaluation(e.getEvaluation()-nb);
+            }
+        }
+
+        return new RedirectView("/items");
+    }
+
+    @GetMapping("/items/delete/{nomElement}")
+    public RedirectView viewDelete(@PathVariable String nomElement){
+
+        ArrayList<Element> aSupp = new ArrayList<Element>();
+
+        for (Element e : listElem){
+            if(e.getNom().equals(nomElement)){
+                aSupp.add(e);
+            }
+        }
+
+        for (Element e: aSupp){
+            listElem.remove(e);
+        }
+
+        return new RedirectView("/items");
+    }
+
+
+
+
 }
