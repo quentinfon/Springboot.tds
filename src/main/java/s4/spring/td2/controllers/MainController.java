@@ -89,4 +89,16 @@ public class MainController {
         }
     }
 
+    @PostMapping("orgas/delete/{id}")
+    public RedirectView deleteOrga(@PathVariable int id) {
+
+        Organization org = repoOrga.findById(id);
+
+        if (org != null){
+            repoOrga.delete(org);
+        }
+
+        return new RedirectView("/orgas");
+    }
+
 }

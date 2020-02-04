@@ -11,10 +11,11 @@
     <table class="ui celled structured table">
         <thead>
         <tr>
-            <th rowspan="2">Id</th>
-            <th rowspan="2">Nom</th>
-            <th rowspan="2">Domaine</th>
-            <th colspan="3">Alias</th>
+            <th class="center aligned" rowspan="1">Id</th>
+            <th class="center aligned" rowspan="2">Nom</th>
+            <th class="center aligned" rowspan="2">Domaine</th>
+            <th class="center aligned" rowspan="2">Alias</th>
+            <th class="center aligned" rowspan="2" colspan="2">Actions</th>
         </tr>
 
         </thead>
@@ -24,10 +25,18 @@
             {{#orgas}}
 
             <tr>
-                <td class="center aligned">{{id}}</td>
-                <td class="center aligned">{{name}}</td>
-                <td class="center aligned">{{domain}}</td>
-                <td class="center aligned">{{aliases}}</td>
+                <td class="center aligned" data-label="Id">{{id}}</td>
+                <td class="center aligned" data-label="Nom">{{name}}</td>
+                <td class="center aligned" data-label="Domaine">{{domain}}</td>
+                <td class="center aligned" data-label="Alias">{{aliases}}</td>
+
+                <td class="center aligned" data-label="Actions">
+                    <a href="/orgas/edit/{{id}}" ><i class="edit icon blue big"></i></a>
+                </td>
+
+                <td class="center aligned" data-label="Actions">
+                    <a href="/orgas/delete/{{id}}" ><i class="close icon red big"></i></a>
+                </td>
 
             </tr>
 
