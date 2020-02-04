@@ -7,7 +7,7 @@ import java.util.List;
 
 public interface OrgaRepository extends JpaRepository<Organization, Integer> {
     List<Organization> findByDomain(String domain);
-    List<Organization> findById(String id);
+    Organization findById(String id);
     List<Organization> findByName(String name);
 
 }

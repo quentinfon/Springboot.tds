@@ -7,7 +7,7 @@ import java.util.List;
 
 public interface UserRepository {
     List<User> findByFirstname(String firstname);
-    List<User> findById(String id);
+    User findById(String id);
     List<User> findByLastname(String lastname);
     List<User> findByEmail(String email);
     List<User> findBySuspended(String suspended);
