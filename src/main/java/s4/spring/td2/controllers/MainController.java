@@ -12,7 +12,6 @@ import java.util.List;
 
 
 @Controller
-@SessionAttributes("items")
 @RequestMapping(
         method={RequestMethod.POST,RequestMethod.GET}
 )
