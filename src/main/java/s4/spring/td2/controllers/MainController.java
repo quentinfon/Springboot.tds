@@ -40,6 +40,25 @@ public class MainController {
 
     }
 
+    @GetMapping("/orgas/new")
+    public String viewFormOrga(ModelMap model){
 
+        return "formOrga";
+
+    }
+
+
+    @PostMapping("orgas/addNew")
+    public RedirectView addNewOrga(@RequestParam String nom, @RequestParam String domain, @RequestParam String alias) {
+
+        Organization org = new Organization();
+        org.setName(nom);
+        org.setDomain(domain);
+        org.setAliases(alias);
+
+        repoOrga.save(org);
+
+        return new RedirectView("/orgas");
+    }
 
 }
