@@ -31,7 +31,7 @@ public class MainController {
 
 
     @GetMapping("/orgas/{id}")
-    public String viewOrgaId(ModelMap model, @PathVariable String id){
+    public String viewOrgaId(ModelMap model, @PathVariable int id){
 
         Organization orga = repoOrga.findById(id);
 
@@ -59,6 +59,34 @@ public class MainController {
         repoOrga.save(org);
 
         return new RedirectView("/orgas");
+    }
+
+    @PostMapping("orgas/addEdit")
+    public RedirectView addEditOrga(@RequestParam int id, @RequestParam String nom, @RequestParam String domain, @RequestParam String alias) {
+
+        Organization org = repoOrga.findById(id);
+        org.setName(nom);
+        org.setDomain(domain);
+        org.setAliases(alias);
+
+        repoOrga.save(org);
+
+        return new RedirectView("/orgas");
+    }
+
+
+
+    @GetMapping("/orgas/edit/{id}")
+    public String viewModifOrga(ModelMap model, @PathVariable int id){
+
+        Organization orga = repoOrga.findById(id);
+
+        if (orga != null){
+            model.put("orga", orga);
+            return "formEditOrga";
+        }else{
+            return "orgaIntrouvable";
+        }
     }
 
 }

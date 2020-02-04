@@ -1,0 +1,21 @@
+{{> ./main/header}}
+
+<div class="container">
+
+    <form action="/orgas/addEdit"  method="post">
+        <input type="hidden" name="id" value="{{orga.id}}">
+        <p>Nom : <input type="text" name="nom" value="{{orga.name}}"/></p>
+        <p>Domain : <input type="text" name="domain" value="{{orga.domain}}"/></p>
+        <p>Alias : <input type="text" name="alias" value="{{orga.aliases}}"/></p>
+
+        <p><input class="ui primary button" type="submit" value="Modifier" /> <input type="reset" value="effacer" /></p>
+    </form>
+
+</div>
+
+
+
+
+
+
+{{> ./main/footer}}
