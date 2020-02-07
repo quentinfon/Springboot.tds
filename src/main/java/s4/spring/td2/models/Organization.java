@@ -1,7 +1,7 @@
 package s4.spring.td2.models;
 
 import javax.persistence.*;
-import java.util.List;
+import java.util.*;
 
 @Entity
 public class Organization {
@@ -67,5 +67,14 @@ public class Organization {
 
     public void setUsers(List<User> users) {
         this.users = users;
+    }
+
+    public void ajoutGroupe(Groupe g){
+        if(groupes == null){
+            groupes = new ArrayList<Groupe>();
+        }
+        if (!groupes.contains(g)){
+            groupes.add(g);
+        }
     }
 }

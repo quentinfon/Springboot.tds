@@ -1,13 +1,13 @@
 {{> ./main/header}}
+<br>
+<div class="ui segment">
 
-<div class="container">
-
-    <form action="/orgas/addNew"  method="post">
+    <form class="ui form" action="/orgas/addNew"  method="post">
         <p>Nom : <input type="text" name="nom" /></p>
         <p>Domain : <input type="text" name="domain" /></p>
         <p>Alias : <input type="text" name="alias" /></p>
 
-        <p><input class="ui primary button" type="submit" value="Cree" /> <input type="reset" value="effacer" /></p>
+        <p><input class="ui primary button" type="submit" value="Cree" /> <input class="ui red button" type="reset" value="effacer" /></p>
     </form>
 
 

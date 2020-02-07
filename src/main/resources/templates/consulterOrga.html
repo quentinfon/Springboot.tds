@@ -1,0 +1,125 @@
+{{> ./main/header}}
+<br>
+<div class="ui segment">
+
+    <div>
+        <a class="ui secondary button" href="/orgas/new">
+            Ajouter une organisation
+        </a>
+    </div>
+
+    <div class="ui segment">
+        <div class="ui grid">
+            <div class="four wide column">
+                <a class="ui grey button" href="/orgas">
+                    Fermer
+                </a>
+            </div>
+            <div class="four wide column">
+                <a class="ui red button" href="/orgas/delete/{{id}}">
+                    Supprimer {{orga.name}}
+                </a>
+            </div>
+            <div class="four wide column">
+                <a class="ui blue button" href="/orgas/edit/{{orga.id}}">
+                    Modifier {{orga.name}}
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <table class="ui basic table">
+        <thead>
+        <tr>
+            <th></th>
+            <th>Infos</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <td>Id</td>
+            <td>{{orga.id}}</td>
+        </tr>
+        <tr>
+            <td>Name</td>
+            <td>{{orga.name}}</td>
+        </tr>
+        <tr>
+            <td>Domain</td>
+            <td>{{orga.domain}}</td>
+        </tr>
+        <tr>
+            <td>Aliases</td>
+            <td>{{orga.aliases}}</td>
+        </tr>
+        <tr>
+            <td>Groupes</td>
+            <td>
+                {{#groupes}}
+
+                {{name}}<br>
+
+                {{/groupes}}
+                <button class="ui button yellow create_btn" type="button" id="test">Ajouter</button>
+            </td>
+        </tr>
+        <tr>
+            <td>Users</td>
+            <td>
+                {{#users}}
+
+                {{email}}<br>
+
+                {{/users}}
+            </td>
+        </tr>
+        </tbody>
+    </table>
+
+
+
+    <div class="ui modal test">
+        <i class="close icon"></i>
+        <div class="header">
+            Ajouter un groupe
+        </div>
+        <div>
+            <div class="ui segment">
+                <h4>Groupe Existant</h4>
+                <form class="ui form" action="/orgas/ajoutGroupe" method="post">
+                    <input type="hidden" name="orga" value="{{id}}">
+                    <select name="numGroupe">
+                        {{#listeGroupe}}
+                        <option value="{{id}}">{{name}}</option>
+                        {{/listeGroupe}}
+                    </select>
+                    <input type="submit">
+                </form>
+
+            </div>
+            <div class="ui segment">
+                <h4>Nouveau Groupe</h4>
+                <form class="ui form" action="/orgas/ajoutNewGroupe" method="post">
+                    <input type="hidden" name="orga" value="{{id}}">
+                    <input type="text" name="nom">
+                    <input type="submit">
+                </form>
+            </div>
+        </div>
+
+    </div>
+
+    <script>
+        $(function(){
+            $("#test").click(function(){
+                $(".test").modal('show');
+            });
+            $(".test").modal({
+                closable: true
+            });
+        });
+    </script>
+
+</div>
+
+{{> ./main/footer}}

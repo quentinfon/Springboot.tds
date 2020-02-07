@@ -5,9 +5,13 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.view.RedirectView;
+import s4.spring.td2.models.Groupe;
 import s4.spring.td2.models.Organization;
+import s4.spring.td2.repositories.GroupeRepository;
 import s4.spring.td2.repositories.OrgaRepository;
 
+import javax.swing.*;
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -19,6 +23,9 @@ public class MainController {
 
     @Autowired
     private OrgaRepository repoOrga;
+
+    @Autowired
+    private GroupeRepository repoGroupe;
 
     @GetMapping("/orgas")
     public String viewListeCategorie(ModelMap model){
@@ -101,4 +108,59 @@ public class MainController {
         return new RedirectView("/orgas");
     }
 
+
+    @GetMapping("/orgas/display/{id}")
+    public String viewInfosOrga(ModelMap model, @PathVariable int id){
+
+        Organization orga = repoOrga.findById(id);
+        List<Groupe> listeG = repoGroupe.findAll();
+
+        if (orga != null){
+            model.put("orga", orga);
+            model.put("listeGroupe", listeG);
+            return "consulterOrga";
+        }else{
+            return "orgaIntrouvable";
+        }
+    }
+
+
+    @PostMapping("/orgas/ajoutNewGroupe")
+    public RedirectView nouveauGroupeOrga(@RequestParam int orga, @RequestParam String nom) {
+
+        Organization org = repoOrga.findById(orga);
+
+        List<Groupe> verif = repoGroupe.findByName(nom);
+
+        Groupe groupe;
+
+        if (verif.size() == 0) {
+
+            groupe = new Groupe();
+            groupe.setName(nom);
+            repoGroupe.save(groupe);
+
+        }else {
+            groupe = verif.get(0);
+        }
+
+        if (org != null) {
+            org.ajoutGroupe(groupe);
+        }
+        return new RedirectView("/orgas/display/"+orga);
+    }
+
+
+    @PostMapping("/orgas/ajoutGroupe")
+    public RedirectView ajoutGroupeOrga(@RequestParam int orga, @RequestParam int numGroupe) {
+
+        Organization org = repoOrga.findById(orga);
+
+        Groupe groupe = repoGroupe.findById(numGroupe);
+
+        if (org != null && groupe != null) {
+            org.ajoutGroupe(groupe);
+        }
+        return new RedirectView("/orgas/display/"+orga);
+    }
 }

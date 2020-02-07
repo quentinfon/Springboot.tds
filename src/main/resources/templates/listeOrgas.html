@@ -15,7 +15,7 @@
             <th class="center aligned" rowspan="2">Nom</th>
             <th class="center aligned" rowspan="2">Domaine</th>
             <th class="center aligned" rowspan="2">Alias</th>
-            <th class="center aligned" rowspan="2" colspan="2">Actions</th>
+            <th class="center aligned" rowspan="2" colspan="3">Actions</th>
         </tr>
 
         </thead>
@@ -29,6 +29,10 @@
                 <td class="center aligned" data-label="Nom">{{name}}</td>
                 <td class="center aligned" data-label="Domaine">{{domain}}</td>
                 <td class="center aligned" data-label="Alias">{{aliases}}</td>
+
+                <td class="center aligned" data-label="Actions">
+                    <a href="/orgas/display/{{id}}" ><i class="eye icon green big"></i></a>
+                </td>
 
                 <td class="center aligned" data-label="Actions">
                     <a href="/orgas/edit/{{id}}" ><i class="edit icon blue big"></i></a>
