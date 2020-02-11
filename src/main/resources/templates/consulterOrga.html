@@ -55,22 +55,22 @@
         <tr>
             <td>Groupes</td>
             <td>
-                {{#groupes}}
+                {{#orga.groupes}}
 
-                {{name}}<br>
+                    {{name}}<br>
 
-                {{/groupes}}
+                {{/orga.groupes}}
                 <button class="ui button yellow create_btn" type="button" id="test">Ajouter</button>
             </td>
         </tr>
         <tr>
             <td>Users</td>
             <td>
-                {{#users}}
+                {{#orga.users}}
 
-                {{email}}<br>
+                    {{email}}<br>
 
-                {{/users}}
+                {{/orga.users}}
             </td>
         </tr>
         </tbody>
@@ -93,7 +93,7 @@
                         <option value="{{id}}">{{name}}</option>
                         {{/listeGroupe}}
                     </select>
-                    <input type="submit">
+                    <input class="ui button" type="submit">
                 </form>
 
             </div>
@@ -102,7 +102,7 @@
                 <form class="ui form" action="/orgas/ajoutNewGroupe" method="post">
                     <input type="hidden" name="orga" value="{{id}}">
                     <input type="text" name="nom">
-                    <input type="submit">
+                    <input class="ui button" type="submit">
                 </form>
             </div>
         </div>

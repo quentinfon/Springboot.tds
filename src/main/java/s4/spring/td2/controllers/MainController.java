@@ -108,12 +108,29 @@ public class MainController {
         return new RedirectView("/orgas");
     }
 
+    @PostMapping("orgas/confDelete/{id}")
+    public String confDeleteOrga(@PathVariable int id, ModelMap model) {
+
+        Organization org = repoOrga.findById(id);
+
+        if (org != null){
+            model.put("SuppressionID", id);
+        }
+
+        List<Organization> orgas = repoOrga.findAll();
+        model.put("orgas", orgas);
+
+        return "listeOrgas";
+    }
+
 
     @GetMapping("/orgas/display/{id}")
     public String viewInfosOrga(ModelMap model, @PathVariable int id){
 
         Organization orga = repoOrga.findById(id);
         List<Groupe> listeG = repoGroupe.findAll();
+
+        System.out.println(orga.getGroupes());
 
         if (orga != null){
             model.put("orga", orga);
@@ -138,15 +155,22 @@ public class MainController {
 
             groupe = new Groupe();
             groupe.setName(nom);
+
+            if (org != null) {
+                groupe.setOrganization(org);
+            }
+
             repoGroupe.save(groupe);
 
         }else {
             groupe = verif.get(0);
+            if (org != null) {
+                groupe.setOrganization(org);
+            }
+            repoGroupe.save(groupe);
         }
 
-        if (org != null) {
-            org.ajoutGroupe(groupe);
-        }
+
         return new RedirectView("/orgas/display/"+orga);
     }
 
@@ -159,8 +183,15 @@ public class MainController {
         Groupe groupe = repoGroupe.findById(numGroupe);
 
         if (org != null && groupe != null) {
-            org.ajoutGroupe(groupe);
+            groupe.setOrganization(org);
+            repoGroupe.save(groupe);
         }
+
         return new RedirectView("/orgas/display/"+orga);
     }
+
+
+
+
+
 }

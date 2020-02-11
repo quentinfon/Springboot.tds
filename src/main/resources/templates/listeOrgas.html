@@ -39,7 +39,7 @@
                 </td>
 
                 <td class="center aligned" data-label="Actions">
-                    <a href="/orgas/delete/{{id}}" ><i class="close icon red big"></i></a>
+                    <a href="/orgas/confDelete/{{id}}" ><i class="close icon red big"></i></a>
                 </td>
 
             </tr>
@@ -49,7 +49,36 @@
         </tbody>
     </table>
 
-</div>
+    {{#SuppressionID}}
+        <div class="ui modal test">
+            <i class="close icon"></i>
+            <div class="header">
+                Etes vous sur de vouloir supprimer
+            </div>
+            <div>
+                <div class="ui segment">
+                    <a href="/orgas" class="ui button grey">Retour</a>
+                    <form class="ui form" action="/orgas/delete/{{SuppressionID}}" method="post">
+                        <input class="ui button red" type="submit" name="oui">
+                    </form>
+                </div>
+            </div>
+        </div>
+
+
+    <script>
+
+
+        $(".test").modal('show');
+
+        $(".test").modal({
+                closable: true
+            });
+
+    </script>
+    {{/SuppressionID}}
+
+
 
 
 

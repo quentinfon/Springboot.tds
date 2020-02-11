@@ -69,12 +69,4 @@ public class Organization {
         this.users = users;
     }
 
-    public void ajoutGroupe(Groupe g){
-        if(groupes == null){
-            groupes = new ArrayList<Groupe>();
-        }
-        if (!groupes.contains(g)){
-            groupes.add(g);
-        }
-    }
 }
