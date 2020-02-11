@@ -1,4 +1,13 @@
 {{> ./main/header}}
+<form class="ui form" action="/orgas/search" method="post">
+    <div class="ui search">
+        <div class="ui icon input">
+            <input class="prompt" type="text" name="search" placeholder="Recherche ...">
+            <i class="search icon"></i>
+        </div>
+        <div class="results"></div>
+    </div>
+</form>
 
 <div>
     Liste des organisations :

@@ -7,8 +7,10 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.view.RedirectView;
 import s4.spring.td2.models.Groupe;
 import s4.spring.td2.models.Organization;
+import s4.spring.td2.models.User;
 import s4.spring.td2.repositories.GroupeRepository;
 import s4.spring.td2.repositories.OrgaRepository;
+import s4.spring.td2.repositories.UserRepository;
 
 import javax.swing.*;
 import java.util.ArrayList;
@@ -26,6 +28,9 @@ public class MainController {
 
     @Autowired
     private GroupeRepository repoGroupe;
+
+    @Autowired
+    private UserRepository repoUser;
 
     @GetMapping("/orgas")
     public String viewListeCategorie(ModelMap model){
@@ -129,12 +134,14 @@ public class MainController {
 
         Organization orga = repoOrga.findById(id);
         List<Groupe> listeG = repoGroupe.findAll();
+        List<User> listeU = repoUser.findAll();
 
         System.out.println(orga.getGroupes());
 
         if (orga != null){
             model.put("orga", orga);
             model.put("listeGroupe", listeG);
+            model.put("listeUsers", listeU);
             return "consulterOrga";
         }else{
             return "orgaIntrouvable";
@@ -191,6 +198,14 @@ public class MainController {
     }
 
 
+    @GetMapping("/orgas/search")
+    public String viewListeSearch(ModelMap model, @RequestParam String search){
+
+        List<Organization> orgas = repoOrga.recherche(search.toUpperCase());
+        model.put("orgas", orgas);
+
+        return "listeOrgas";
+    }
 
 
 

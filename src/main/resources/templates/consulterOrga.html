@@ -60,7 +60,7 @@
                     {{name}}<br>
 
                 {{/orga.groupes}}
-                <button class="ui button yellow create_btn" type="button" id="test">Ajouter</button>
+                <button class="ui button yellow create_btn" type="button" id="ajoutGroupe">Ajouter</button>
             </td>
         </tr>
         <tr>
@@ -71,6 +71,7 @@
                     {{email}}<br>
 
                 {{/orga.users}}
+                <button class="ui button yellow create_btn" type="button" id="ajoutUsers">Ajouter</button>
             </td>
         </tr>
         </tbody>
@@ -78,30 +79,77 @@
 
 
 
-    <div class="ui modal test">
+    <div class="ui modal ajoutGroupe">
+    <i class="close icon"></i>
+    <div class="header">
+        Ajouter un groupe
+    </div>
+    <div>
+        <div class="ui segment">
+            <h4>Groupe Existant</h4>
+            <form class="ui form" action="/orgas/ajoutGroupe" method="post">
+                <input type="hidden" name="orga" value="{{id}}">
+                <select name="numGroupe">
+                    {{#listeGroupe}}
+                    <option value="{{id}}">{{name}}</option>
+                    {{/listeGroupe}}
+                </select>
+                <input class="ui button" type="submit">
+            </form>
+
+        </div>
+        <div class="ui segment">
+            <h4>Nouveau Groupe</h4>
+            <form class="ui form" action="/orgas/ajoutNewGroupe" method="post">
+                <input type="hidden" name="orga" value="{{id}}">
+                <input type="text" name="nom">
+                <input class="ui button" type="submit">
+            </form>
+        </div>
+    </div>
+
+</div>
+
+    <script>
+        $(function(){
+            $("#ajoutGroupe").click(function(){
+                $(".ajoutGroupe").modal('show');
+            });
+            $(".ajoutGroupe").modal({
+                closable: true
+            });
+        });
+    </script>
+
+    <div class="ui modal ajoutUsers">
         <i class="close icon"></i>
         <div class="header">
-            Ajouter un groupe
+            Ajouter un user
         </div>
         <div>
             <div class="ui segment">
-                <h4>Groupe Existant</h4>
-                <form class="ui form" action="/orgas/ajoutGroupe" method="post">
+                <h4>Personne Existante</h4>
+                <form class="ui form" action="/orgas/ajoutUser" method="post">
                     <input type="hidden" name="orga" value="{{id}}">
-                    <select name="numGroupe">
-                        {{#listeGroupe}}
-                        <option value="{{id}}">{{name}}</option>
-                        {{/listeGroupe}}
+                    <select name="numUser">
+                        {{#listeUsers}}
+                        <option value="{{id}}">{{firstname}} {{lastname}} - {{email}}</option>
+                        {{/listeUsers}}
                     </select>
                     <input class="ui button" type="submit">
                 </form>
 
             </div>
             <div class="ui segment">
-                <h4>Nouveau Groupe</h4>
-                <form class="ui form" action="/orgas/ajoutNewGroupe" method="post">
+                <h4>Nouveau user</h4>
+                <form class="ui form" action="/orgas/ajoutNewUser" method="post">
                     <input type="hidden" name="orga" value="{{id}}">
-                    <input type="text" name="nom">
+                    <label for="prenom">Prenom</label>
+                    <input id="prenom" type="text" name="prenom">
+                    <label for="nom">Nom</label>
+                    <input id="nom" type="text" name="nom">
+                    <label for="mail">Mail</label>
+                    <input id="mail" type="text" name="mail">
                     <input class="ui button" type="submit">
                 </form>
             </div>
@@ -111,10 +159,10 @@
 
     <script>
         $(function(){
-            $("#test").click(function(){
-                $(".test").modal('show');
+            $("#ajoutUsers").click(function(){
+                $(".ajoutUsers").modal('show');
             });
-            $(".test").modal({
+            $(".ajoutUsers").modal({
                 closable: true
             });
         });
