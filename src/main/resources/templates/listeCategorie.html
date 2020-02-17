@@ -1,0 +1,51 @@
+{{> ./main/header}}
+
+<div class="ui tabular menu">
+
+    {{#categorie}}
+
+        <div class="item" data-tab="{{libelle}}">{{libelle}}</div>
+
+    {{/categorie}}
+
+</div>
+
+{{#categorie}}
+<div class="ui tab" data-tab="{{libelle}}">
+
+    {{#listeElement}}
+
+    <h4>{{nom}}</h4>
+    <p> a une evaluation de {{evaluation}}</p>
+
+    <div class="ui buttons">
+        <a href="/items/inc/{{libelle}}/{{nom}}" class="ui positive button">+</a>
+        <div class="or" data-text="ou"></div>
+        <a href="/items/dec/{{libelle}}/{{nom}}" class="ui negative button">-</a>
+    </div>
+
+    {{/listeElement}}
+
+    <br><br><br>
+
+    <div class="ui four column grid">
+        <div class="row">
+            <form action="/items/addNew/{{libelle}}"  method="post">
+                <div class="column ui input">
+                    <input class="ui input" type="text" name="nom" />
+                </div>
+                <div class="column">
+                    <input class="ui primary button" type="submit" value="Ajouter" />
+                </div>
+            </form>
+        </div>
+    </div>
+
+</div>
+
+{{/categorie}}
+
+
+
+
+{{> ./main/footer}}
