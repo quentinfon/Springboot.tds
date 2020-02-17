@@ -1,0 +1,265 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ArtifactsWorkspaceSettings">
+    <artifacts-to-build>
+      <artifact name="td2:war" />
+    </artifacts-to-build>
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="a2482953-a7d0-4181-9a96-c40d51bb33f9" name="Default Changelist" comment="" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Interface" />
+        <option value="HTML File" />
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="ProjectId" id="1XLNGyb3HiHtzq93ezqEDmfFpZO" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showExcludedFiles" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="DefaultHtmlFileTemplate" value="HTML File" />
+    <property name="RequestMappingsPanelOrder0" value="0" />
+    <property name="RequestMappingsPanelOrder1" value="1" />
+    <property name="RequestMappingsPanelWidth0" value="75" />
+    <property name="RequestMappingsPanelWidth1" value="75" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="aspect.path.notification.shown" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="project.structure.last.edited" value="Artifacts" />
+    <property name="project.structure.proportion" value="0.0" />
+    <property name="project.structure.side.proportion" value="0.0" />
+    <property name="restartRequiresConfirmation" value="false" />
+  </component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="D:\projets-git\Springboot\Springboot.tds\src\main\resources\templates" />
+    </key>
+  </component>
+  <component name="RunManager">
+    <configuration name="Td2Application" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
+      <module name="td2" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="s4.spring.td2.Td2Application" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="a2482953-a7d0-4181-9a96-c40d51bb33f9" name="Default Changelist" comment="" />
+      <created>1580821323234</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1580821323234</updated>
+      <workItem from="1580821327638" duration="9879000" />
+      <workItem from="1580893047151" duration="109000" />
+      <workItem from="1580899378086" duration="150000" />
+      <workItem from="1580981535575" duration="1475000" />
+      <workItem from="1581067656523" duration="6626000" />
+      <workItem from="1581084704902" duration="673000" />
+      <workItem from="1581422844133" duration="9454000" />
+    </task>
+    <task id="LOCAL-00001" summary="pom">
+      <created>1580821787418</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1580821787418</updated>
+    </task>
+    <task id="LOCAL-00002" summary="templates">
+      <created>1580822058215</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1580822058215</updated>
+    </task>
+    <task id="LOCAL-00003" summary="propriete">
+      <created>1580822108084</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1580822108084</updated>
+    </task>
+    <task id="LOCAL-00004" summary="models">
+      <created>1580823598950</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1580823598950</updated>
+    </task>
+    <task id="LOCAL-00005" summary="repos">
+      <created>1580824407346</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1580824407346</updated>
+    </task>
+    <task id="LOCAL-00006" summary="orgas">
+      <created>1580825417120</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1580825417120</updated>
+    </task>
+    <task id="LOCAL-00007" summary="orgas">
+      <created>1580826023191</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1580826023191</updated>
+    </task>
+    <task id="LOCAL-00008" summary="orgas">
+      <created>1580826068733</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1580826068733</updated>
+    </task>
+    <task id="LOCAL-00009" summary="orgas">
+      <created>1580827390656</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1580827390656</updated>
+    </task>
+    <task id="LOCAL-00010" summary="orgas">
+      <created>1580828315146</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1580828315146</updated>
+    </task>
+    <task id="LOCAL-00011" summary="orgas">
+      <created>1580836251060</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1580836251060</updated>
+    </task>
+    <task id="LOCAL-00012" summary="V2">
+      <created>1581075994276</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1581075994276</updated>
+    </task>
+    <task id="LOCAL-00013" summary="V2">
+      <created>1581427545263</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1581427545263</updated>
+    </task>
+    <task id="LOCAL-00014" summary="Recherche">
+      <created>1581432720823</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1581432720823</updated>
+    </task>
+    <option name="localTasksCounter" value="15" />
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="1" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="pom" />
+    <MESSAGE value="templates" />
+    <MESSAGE value="propriete" />
+    <MESSAGE value="models" />
+    <MESSAGE value="repos" />
+    <MESSAGE value="orgas" />
+    <MESSAGE value="V2" />
+    <MESSAGE value="Recherche" />
+    <option name="LAST_COMMIT_MESSAGE" value="Recherche" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="471" y="298" key="#com.intellij.ide.actions.ChooseComponentsToExportDialog" timestamp="1580890031370">
+      <screen x="0" y="0" width="1440" height="920" />
+    </state>
+    <state x="471" y="298" key="#com.intellij.ide.actions.ChooseComponentsToExportDialog/0.0.1440.920@0.0.1440.920" timestamp="1580890031370" />
+    <state x="526" y="178" key="#com.intellij.ide.util.MemberChooser" timestamp="1580826012528">
+      <screen x="0" y="0" width="1440" height="920" />
+    </state>
+    <state x="526" y="178" key="#com.intellij.ide.util.MemberChooser/0.0.1440.920@0.0.1440.920" timestamp="1580826012528" />
+    <state x="345" y="56" key="CommitChangelistDialog2" timestamp="1581432719121">
+      <screen x="0" y="0" width="1440" height="920" />
+    </state>
+    <state x="345" y="56" key="CommitChangelistDialog2/0.0.1440.920@0.0.1440.920" timestamp="1581432719121" />
+    <state x="501" y="203" key="FileChooserDialogImpl" timestamp="1580899513962">
+      <screen x="0" y="0" width="1440" height="920" />
+    </state>
+    <state x="501" y="203" key="FileChooserDialogImpl/0.0.1440.920@0.0.1440.920" timestamp="1580899513962" />
+    <state width="1397" height="242" key="GridCell.Tab.0.bottom" timestamp="1581433277126">
+      <screen x="0" y="0" width="1440" height="920" />
+    </state>
+    <state width="1397" height="242" key="GridCell.Tab.0.bottom/0.0.1440.920@0.0.1440.920" timestamp="1581433277126" />
+    <state width="1397" height="242" key="GridCell.Tab.0.center" timestamp="1581433277126">
+      <screen x="0" y="0" width="1440" height="920" />
+    </state>
+    <state width="1397" height="242" key="GridCell.Tab.0.center/0.0.1440.920@0.0.1440.920" timestamp="1581433277126" />
+    <state width="1397" height="242" key="GridCell.Tab.0.left" timestamp="1581433277126">
+      <screen x="0" y="0" width="1440" height="920" />
+    </state>
+    <state width="1397" height="242" key="GridCell.Tab.0.left/0.0.1440.920@0.0.1440.920" timestamp="1581433277126" />
+    <state width="1397" height="242" key="GridCell.Tab.0.right" timestamp="1581433277126">
+      <screen x="0" y="0" width="1440" height="920" />
+    </state>
+    <state width="1397" height="242" key="GridCell.Tab.0.right/0.0.1440.920@0.0.1440.920" timestamp="1581433277126" />
+    <state width="1397" height="242" key="GridCell.Tab.1.bottom" timestamp="1581433277140">
+      <screen x="0" y="0" width="1440" height="920" />
+    </state>
+    <state width="1397" height="242" key="GridCell.Tab.1.bottom/0.0.1440.920@0.0.1440.920" timestamp="1581433277140" />
+    <state width="1397" height="242" key="GridCell.Tab.1.center" timestamp="1581433277140">
+      <screen x="0" y="0" width="1440" height="920" />
+    </state>
+    <state width="1397" height="242" key="GridCell.Tab.1.center/0.0.1440.920@0.0.1440.920" timestamp="1581433277140" />
+    <state width="1397" height="242" key="GridCell.Tab.1.left" timestamp="1581433277140">
+      <screen x="0" y="0" width="1440" height="920" />
+    </state>
+    <state width="1397" height="242" key="GridCell.Tab.1.left/0.0.1440.920@0.0.1440.920" timestamp="1581433277140" />
+    <state width="1397" height="242" key="GridCell.Tab.1.right" timestamp="1581433277140">
+      <screen x="0" y="0" width="1440" height="920" />
+    </state>
+    <state width="1397" height="242" key="GridCell.Tab.1.right/0.0.1440.920@0.0.1440.920" timestamp="1581433277140" />
+    <state x="201" y="36" key="SettingsEditor" timestamp="1580890202198">
+      <screen x="0" y="0" width="1440" height="920" />
+    </state>
+    <state x="201" y="36" key="SettingsEditor/0.0.1440.920@0.0.1440.920" timestamp="1580890202198" />
+    <state x="313" y="195" key="Vcs.Push.Dialog.v2" timestamp="1581432725865">
+      <screen x="0" y="0" width="1440" height="920" />
+    </state>
+    <state x="313" y="195" key="Vcs.Push.Dialog.v2/0.0.1440.920@0.0.1440.920" timestamp="1581432725865" />
+    <state x="417" y="286" key="com.intellij.ide.util.TipDialog" timestamp="1581422844763">
+      <screen x="0" y="0" width="1440" height="920" />
+    </state>
+    <state x="417" y="286" key="com.intellij.ide.util.TipDialog/0.0.1440.920@0.0.1440.920" timestamp="1581422844763" />
+    <state x="171" y="82" key="new project wizard" timestamp="1580899527284">
+      <screen x="0" y="0" width="1440" height="920" />
+    </state>
+    <state x="171" y="82" key="new project wizard/0.0.1440.920@0.0.1440.920" timestamp="1580899527284" />
+    <state x="377" y="211" key="run.anything.popup" timestamp="1581073751721">
+      <screen x="0" y="0" width="1440" height="920" />
+    </state>
+    <state x="377" y="211" key="run.anything.popup/0.0.1440.920@0.0.1440.920" timestamp="1581073751721" />
+  </component>
+</project>
