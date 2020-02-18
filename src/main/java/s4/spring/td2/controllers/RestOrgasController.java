@@ -50,12 +50,8 @@ public class RestOrgasController {
         Organization org =  repoOrga.findById(o.getId());
 
         if (org != null){
-            org.setName(o.getName());
-            org.setDomain(o.getDomain());
-            org.setAliases(o.getAliases());
-            org.setGroupes(o.getGroupes());
-            org.setUsers(o.getUsers());
-            repoOrga.save(o);
+            org = o;
+            repoOrga.save(org);
         }
 
         return o;
