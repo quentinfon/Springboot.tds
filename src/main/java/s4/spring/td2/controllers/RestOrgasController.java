@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.view.RedirectView;
 import s4.spring.td2.models.Organization;
 import s4.spring.td2.repositories.GroupeRepository;
 import s4.spring.td2.repositories.OrgaRepository;
@@ -35,6 +36,29 @@ public class RestOrgasController {
     @GetMapping("/rest/orgas/{id}")
     public Organization viewOrgaId(@PathVariable int id){
         return repoOrga.findById(id);
+    }
+
+    @PostMapping("/rest/orgas/create")
+    public Organization addNewOrga(@RequestBody Organization o) {
+        repoOrga.save(o);
+        return o;
+    }
+
+    @PutMapping("/rest/orgas/update")
+    public Organization addEditOrga(@RequestBody Organization o) {
+
+        Organization org =  repoOrga.findById(o.getId());
+
+        if (org != null){
+            org.setName(o.getName());
+            org.setDomain(o.getDomain());
+            org.setAliases(o.getAliases());
+            org.setGroupes(o.getGroupes());
+            org.setUsers(o.getUsers());
+            repoOrga.save(o);
+        }
+
+        return o;
     }
 
 }
