@@ -61,4 +61,14 @@ public class RestOrgasController {
         return o;
     }
 
+    @DeleteMapping("/rest/orgas/delete")
+    public Organization deleteOrga(@RequestBody Organization o) {
+
+        Organization org =  repoOrga.findById(o.getId());
+        if (org != null){
+            repoOrga.delete(org);
+        }
+        return org;
+    }
+
 }
