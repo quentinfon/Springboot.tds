@@ -40,7 +40,7 @@ public class RestOrgasController {
 
     @PostMapping("/rest/orgas/create")
     public Organization addNewOrga(@RequestBody Organization o) {
-        repoOrga.save(o);
+        repoOrga.saveAndFlush(o);
         return o;
     }
 
@@ -51,7 +51,7 @@ public class RestOrgasController {
 
         if (org != null){
             org = o;
-            repoOrga.save(org);
+            repoOrga.saveAndFlush(org);
         }
 
         return o;
