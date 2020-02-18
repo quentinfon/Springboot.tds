@@ -14,10 +14,10 @@ public class Organization {
     private String domain;
     private String aliases;
 
-    @OneToMany(cascade= CascadeType.ALL,mappedBy="organization")
+    @OneToMany(cascade= CascadeType.PERSIST,mappedBy="organization")
     private List<Groupe> groupes;
 
-    @OneToMany(cascade=CascadeType.ALL,mappedBy="organization")
+    @OneToMany(cascade=CascadeType.PERSIST,mappedBy="organization")
     private List<User> users;
 
 
