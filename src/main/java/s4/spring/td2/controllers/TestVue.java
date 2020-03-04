@@ -14,6 +14,10 @@ public class TestVue {
     @GetMapping("/testVue")
     public String index(ModelMap model){
         vue.addData("message", "Test de message");
+        vue.addData("copie");
+        vue.addData("names", new String[]{"Bob", "Bip"});
+        vue.addDataRaw("captions", "['Name','domain', 'aliases']");
+        vue.addMethod("doCopie", "this.copie=this.message");
         model.put("vue", this.vue);
         return "index";
     }

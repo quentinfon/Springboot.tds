@@ -4,6 +4,20 @@
         <%message%>
     </div>
     <input v-model = "message">
+    <input v-model = "copie">
+
+    <button @click="doCopie">Copier</button>
+
+    <li v-for="name in names">
+        <%name%>
+    </li>
+
+    <h2>Captions</h2>
+    <li v-for="c in captions">
+        <%c%>
+    </li>
+
+
 
 {{> ./main/footer}}
 
