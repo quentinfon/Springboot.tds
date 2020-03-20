@@ -25,15 +25,10 @@ public class LoginController {
 
 
     @GetMapping("/")
-    public String viewAccueil(ModelMap model){
+    public RedirectView viewAccueil(ModelMap model){
 
-        if(connectedUser != null){
-            vue.addData("messageBienvenue", "Bienvenue "+connectedUser.getLogin());
-        }
-        vue.addData("count", 0);
-        model.put("vue", this.vue);
+        return new RedirectView("/index");
 
-        return "accueil";
     }
 
     @GetMapping("/login")
@@ -48,35 +43,21 @@ public class LoginController {
         return "loginPage";
     }
 
-    @GetMapping("/new")
-    public String viewNew(ModelMap model){
-
-        if (repoUser.findByLogin("quentin") == null){
-            User u = new User();
-            u.setLogin("quentin");
-            u.setPassword("fontaine");
-
-            repoUser.save(u);
-        }
-
-        return "accueil";
-    }
-
     @PostMapping("/connexion")
     public RedirectView connexion(@RequestParam String login, @RequestParam String password) {
 
-        connectedUser = repoUser.connexion(login, password);
+        LoginController.connectedUser = repoUser.connexion(login, password);
 
-        return new RedirectView("/");
+        return new RedirectView("/index");
 
     }
 
     @PostMapping("/logout")
     public RedirectView deconnexion() {
 
-        connectedUser = null;
+        LoginController.connectedUser = null;
 
-        return new RedirectView("/");
+        return new RedirectView("/index");
 
     }
 

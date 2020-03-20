@@ -1,0 +1,67 @@
+{{> ./main/header}}
+
+<template xmlns:v-slot="http://www.w3.org/1999/XSL/Transform">
+    <v-row align="center">
+
+        <v-col class="text-center" cols="12" sm="4">
+            <h1>Gestionnaire de Scripts</h1>
+        </v-col>
+
+        <v-col class="text-center" cols="12" sm="4">
+
+        </v-col>
+
+        <v-col class="text-center" cols="12" sm="4">
+            <div class="my-2">
+
+                <div v-if="connecter">
+                    <v-btn text color="error" href="/logout">Deconnexion</v-btn>
+                </div>
+                <div v-else>
+                    <v-btn text href="/login">Connexion</v-btn>
+                </div>
+
+            </div>
+        </v-col>
+
+    </v-row>
+    <v-row>
+        <v-col class="text-center" cols="12" sm="4">
+            <div v-if="connecter">
+                <h3>Bienvenue <% user %></h3>
+            </div>
+        </v-col>
+    </v-row>
+
+
+    <template>
+        <v-data-table
+                :headers="headers"
+                :items="listeScripts"
+                class="elevation-1"
+        >
+
+            <template v-slot:items="props">
+                <td class="text-xs-right"><% props.item.title %></td>
+                <td class="text-xs-right"><% props.item.description %></td>
+                <td class="text-xs-right"><% props.item.creationDate %></td>
+            </template>
+            <template v-slot:pageText="props">
+                Lignes <% props.pageStart %> - <% props.pageStop %> de <% props.itemsLength %>
+            </template>
+        </v-data-table>
+    </template>
+
+
+    <v-btn class="ma-2" tile outlined color="success">
+        <v-icon left>add_circle_outline</v-icon> Ajouter un Script
+    </v-btn>
+
+</template>
+
+
+{{> ./main/footer}}
+
+{{{vue}}}
+
+

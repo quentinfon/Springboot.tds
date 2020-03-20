@@ -1,6 +1,12 @@
 package s4.td.td5.models;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import javax.persistence.*;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
@@ -95,5 +101,10 @@ public class Script {
 
     public void setHistory(List<History> history) {
         this.history = history;
+    }
+
+    public String dateCreation(){
+        DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy HH:mm");
+        return dateFormat.format(creationDate);
     }
 }
