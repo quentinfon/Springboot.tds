@@ -3,6 +3,7 @@ package s4.td.td5.models;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import javax.persistence.*;
 import java.text.DateFormat;
@@ -25,13 +26,14 @@ public class Script {
     @ManyToOne
     private Category category;
 
+    @JsonManagedReference
     @ManyToOne
     private User owner;
 
     @ManyToOne
     private Language language;
 
-    @OneToMany(cascade=CascadeType.PERSIST,mappedBy="script")
+    @OneToMany(cascade=CascadeType.PERSIST,mappedBy="script", fetch = FetchType.EAGER)
     private List<History> history;
 
 

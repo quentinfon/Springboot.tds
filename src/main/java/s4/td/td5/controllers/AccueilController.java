@@ -36,10 +36,11 @@ public class AccueilController {
 
         vue.addDataRaw("headers","[ { text: 'Titre', align: 'start', sortable: false, value: 'title' }, { text: 'Description', value: 'description' }, { text: 'Date dernière modification', value: 'dateModif' } ]");
 
-        List<Script> scripts = repoScript.findByOwner(LoginController.connectedUser);
+        if (LoginController.connectedUser != null) {
+            List<Script> scripts = LoginController.connectedUser.getScripts();
 
-        vue.addData("listeScripts", scripts);
-
+            vue.addData("listeScripts", scripts);
+        }
 
 
         if(LoginController.connectedUser != null){

@@ -1,5 +1,6 @@
 package s4.td.td5.models;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
@@ -20,7 +21,8 @@ public class User {
     private String email;
     private String identity;
 
-    @OneToMany(cascade=CascadeType.PERSIST,mappedBy="owner")
+    @JsonBackReference
+    @OneToMany(cascade=CascadeType.PERSIST,mappedBy="owner", fetch = FetchType.EAGER)
     private List<Script> scripts;
 
     public int getId() {
