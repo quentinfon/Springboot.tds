@@ -10,6 +10,7 @@ public class Script {
     @GeneratedValue(strategy=GenerationType.AUTO)
     private int id;
 
+
     private String title;
     private String description;
     private String content;
@@ -62,5 +63,37 @@ public class Script {
 
     public Date getCreationDate() {
         return creationDate;
+    }
+
+    public Category getCategory() {
+        return category;
+    }
+
+    public void setCategory(Category category) {
+        this.category = category;
+    }
+
+    public User getOwner() {
+        return owner;
+    }
+
+    public void setOwner(User owner) {
+        this.owner = owner;
+    }
+
+    public Language getLanguage() {
+        return language;
+    }
+
+    public void setLanguage(Language language) {
+        this.language = language;
+    }
+
+    public List<History> getHistory() {
+        return history;
+    }
+
+    public void setHistory(List<History> history) {
+        this.history = history;
     }
 }

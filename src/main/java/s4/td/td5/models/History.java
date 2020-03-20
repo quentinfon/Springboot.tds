@@ -17,4 +17,39 @@ public class History {
     @ManyToOne
     private Script version;
 
+    public String getComment() {
+        return comment;
+    }
+
+    public void setComment(String comment) {
+        this.comment = comment;
+    }
+
+    public String getContent() {
+        return content;
+    }
+
+    public void setContent(String content) {
+        this.content = content;
+    }
+
+    public Date getDate() {
+        return date;
+    }
+
+    public void setDate(Date date) {
+        this.date = date;
+    }
+
+    public Script getVersion() {
+        return version;
+    }
+
+    public void setVersion(Script version) {
+        this.version = version;
+    }
+
+    public int getId() {
+        return id;
+    }
 }
