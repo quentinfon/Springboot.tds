@@ -22,7 +22,7 @@ public class Script {
     private User owner;
 
     @ManyToOne
-    private User language;
+    private Language language;
 
     @OneToMany(cascade=CascadeType.PERSIST,mappedBy="version")
     private List<History> history;
