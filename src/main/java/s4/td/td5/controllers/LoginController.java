@@ -39,7 +39,6 @@ public class LoginController {
     @GetMapping("/login")
     public String viewLogin(ModelMap model){
 
-
         vue.addData("valid", true);
         vue.addData("login", "");
         vue.addData("password", "");
@@ -76,6 +75,7 @@ public class LoginController {
     public RedirectView deconnexion() {
 
         connectedUser = null;
+
         return new RedirectView("/");
 
     }

@@ -1,0 +1,63 @@
+{{> ./main/header}}
+
+<div>
+
+    <h1>Ajout Script</h1>
+
+    <template>
+        <v-form
+                method="post"
+                action="/script/ajout"
+                ref="form"
+                id="scriptForm"
+                v-model="valid"
+                lazy-validation
+        >
+
+            <v-text-field
+                    v-model="title"
+                    label="title"
+                    name="title"
+                    required
+            ></v-text-field>
+
+            <v-text-field
+                    v-model="description"
+                    name="description"
+                    label="Description"
+                    required
+            ></v-text-field>
+
+            <v-text-field
+                    v-model="content"
+                    name="content"
+                    label="Contenu"
+                    required
+            ></v-text-field>
+
+
+            <v-btn
+                    :disabled="!valid"
+                    color="success"
+                    @click="validate"
+            >
+                Valider
+            </v-btn>
+
+            <v-btn
+                    color="error"
+                    @click="reset"
+            >
+                Reset
+            </v-btn>
+
+
+        </v-form>
+    </template>
+
+
+</div>
+
+{{> ./main/footer}}
+
+{{{vue}}}
