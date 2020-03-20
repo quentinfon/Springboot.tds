@@ -10,6 +10,7 @@ public class Language {
     @GeneratedValue(strategy= GenerationType.AUTO)
     private int id;
 
+    @Column(unique=true)
     private String name;
 
     @OneToMany(cascade=CascadeType.PERSIST,mappedBy="language")
