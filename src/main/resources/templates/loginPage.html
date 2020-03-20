@@ -1,0 +1,55 @@
+{{> ./main/header}}
+
+<div>
+
+    <template>
+        <v-form
+                method="post"
+                action="/connexion"
+                ref="form"
+                id="logForm"
+                v-model="valid"
+                lazy-validation
+        >
+
+            <v-text-field
+                    v-model="login"
+                    label="Login"
+                    name="login"
+                    required
+            ></v-text-field>
+
+            <v-text-field
+                    v-model="password"
+                    name="password"
+                    type="password"
+                    label="Mot de passe"
+                    required
+            ></v-text-field>
+
+
+            <v-btn
+                    :disabled="!valid"
+                    color="success"
+                    @click="validate"
+            >
+                Connexion
+            </v-btn>
+
+            <v-btn
+                    color="error"
+                    @click="reset"
+            >
+                Reset
+            </v-btn>
+
+
+        </v-form>
+    </template>
+
+
+</div>
+
+{{> ./main/footer}}
+
+{{{vue}}}
