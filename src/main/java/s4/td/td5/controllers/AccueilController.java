@@ -13,6 +13,7 @@ import s4.td.td5.repositories.UserRepository;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.List;
 
 @Controller
@@ -36,11 +37,12 @@ public class AccueilController {
 
         vue.addDataRaw("headers","[ { text: 'Titre', align: 'start', sortable: false, value: 'title' }, { text: 'Description', value: 'description' }, { text: 'Date dernière modification', value: 'dateModif' } ]");
 
-        if (LoginController.connectedUser != null) {
-            List<Script> scripts = LoginController.connectedUser.getScripts();
+        List<Script> scripts = null;
 
-            vue.addData("listeScripts", scripts);
+        if (LoginController.connectedUser != null) {
+            scripts = LoginController.connectedUser.getScripts();
         }
+        vue.addData("listeScripts", scripts);
 
 
         if(LoginController.connectedUser != null){
