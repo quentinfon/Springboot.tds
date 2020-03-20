@@ -6,7 +6,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.view.RedirectView;
+import s4.td.td5.models.History;
 import s4.td.td5.models.Script;
+import s4.td.td5.repositories.HistoryRepository;
 import s4.td.td5.repositories.ScriptRepository;
 import s4.td.td5.repositories.UserRepository;
 import java.util.Date;
@@ -25,6 +27,9 @@ public class ScriptController {
 
     @Autowired
     private ScriptRepository repoScript;
+
+    @Autowired
+    private HistoryRepository repoHistory;
 
     @GetMapping("/script/new")
     public String viewNewScript(ModelMap model){
@@ -74,13 +79,56 @@ public class ScriptController {
 
         Script s = repoScript.findById(id);
 
-        if (s.getOwner() == LoginController.connectedUser){
+        if (s != null){
+            if (s.getOwner().getId() == LoginController.connectedUser.getId()){
 
+                vue.addData("valid", true);
+                vue.addData("id", s.getId());
+                vue.addData("title", s.getTitle());
+                vue.addData("description", s.getDescription());
+                vue.addData("content", s.getContent());
+                vue.addMethod("validate", "if(this.$refs.form.validate()){ modifScriptForm.submit(); }");
+                vue.addMethod("reset", "this.$refs.form.reset()");
+                model.put("vue", this.vue);
+                return "formModifScript";
+
+            }else{
+                vue.addData("message","Ce script n'est pas le votre !");
+                model.put("vue",this.vue);
+                return "pasLesDroits";
+            }
         }else{
-
+            vue.addData("message","Ce script n'existe pas !");
+            model.put("vue",this.vue);
+            return "404";
         }
 
-        return "pasLesDroits";
+    }
+
+    @PostMapping("/script/modifier")
+    public RedirectView modifScript(@RequestParam int id, @RequestParam String title, @RequestParam String description, @RequestParam String content) {
+
+        Script s = repoScript.findById(id);
+
+        if (LoginController.connectedUser != null && s != null && s.getOwner().getId() == LoginController.connectedUser.getId()){
+
+            History h = new History();
+            h.setVersion(s);
+            h.setDate(s.getCreationDate());
+            h.setContent(s.getContent());
+            h.setComment(s.getDescription());
+            repoHistory.save(h);
+
+            s.setTitle(title);
+            s.setContent(content);
+            s.setDescription(description);
+            s.setCreationDate(new Date());
+            s.setOwner(LoginController.connectedUser);
+            repoScript.save(s);
+        }
+
+        return new RedirectView("/");
+
     }
 
 
