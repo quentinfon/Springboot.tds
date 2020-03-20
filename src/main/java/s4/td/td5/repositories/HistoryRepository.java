@@ -15,6 +15,6 @@ public interface HistoryRepository extends JpaRepository<History, Integer> {
 
     History findById(int id);
 
-    List<History> findByVersion(Script s);
+    List<History> findByScript(Script s);
 
 }

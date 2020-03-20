@@ -25,7 +25,7 @@ public class Script {
     @ManyToOne
     private Language language;
 
-    @OneToMany(cascade=CascadeType.PERSIST,mappedBy="version")
+    @OneToMany(cascade=CascadeType.PERSIST,mappedBy="script")
     private List<History> history;
 
 

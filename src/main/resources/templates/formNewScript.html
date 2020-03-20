@@ -7,12 +7,19 @@
     <template>
         <v-form
                 method="post"
-                action="/script/ajout"
+                action="/script/submit"
                 ref="form"
                 id="scriptForm"
                 v-model="valid"
                 lazy-validation
         >
+
+            <v-text-field
+                    v-model="id"
+                    name="id"
+                    type="hidden"
+                    required
+            ></v-text-field>
 
             <v-text-field
                     v-model="title"

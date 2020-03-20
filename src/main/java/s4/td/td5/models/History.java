@@ -15,7 +15,7 @@ public class History {
     private Date date;
 
     @ManyToOne
-    private Script version;
+    private Script script;
 
     public String getComment() {
         return comment;
@@ -41,12 +41,12 @@ public class History {
         this.date = date;
     }
 
-    public Script getVersion() {
-        return version;
+    public Script getScript() {
+        return script;
     }
 
-    public void setVersion(Script version) {
-        this.version = version;
+    public void setScript(Script script) {
+        this.script = script;
     }
 
     public int getId() {

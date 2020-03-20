@@ -37,18 +37,20 @@ public class ScriptController {
         if (LoginController.connectedUser != null){
 
             vue.addData("valid", true);
-            vue.addData("login", "");
-            vue.addData("password", "");
+            vue.addData("id", -1);
+            vue.addData("title", "");
+            vue.addData("description", "");
+            vue.addData("content", "");
             vue.addMethod("validate", "if(this.$refs.form.validate()){ scriptForm.submit(); }");
             vue.addMethod("reset", "this.$refs.form.reset()");
             model.put("vue", this.vue);
 
             return "formNewScript";
         }else{
+
             vue.addData("valid", true);
-            vue.addData("title", "");
-            vue.addData("description", "");
-            vue.addData("content", "");
+            vue.addData("login", "");
+            vue.addData("password", "");
             vue.addMethod("validate", "if(this.$refs.form.validate()){ logForm.submit(); }");
             vue.addMethod("reset", "this.$refs.form.reset()");
             model.put("vue", this.vue);
@@ -56,18 +58,43 @@ public class ScriptController {
         }
     }
 
-    @PostMapping("/script/ajout")
-    public RedirectView connexion(@RequestParam String title, @RequestParam String description, @RequestParam String content) {
+    @PostMapping("/script/submit")
+    public RedirectView connexion(@RequestParam int id, @RequestParam String title, @RequestParam String description, @RequestParam String content) {
 
-        if (LoginController.connectedUser != null){
-            Script s = new Script();
-            s.setTitle(title);
-            s.setContent(content);
-            s.setDescription(description);
-            s.setCreationDate(new Date());
-            s.setOwner(LoginController.connectedUser);
-            repoScript.save(s);
+        if (id == -1){
+            //Création
+            if (LoginController.connectedUser != null){
+                Script s = new Script();
+                s.setTitle(title);
+                s.setContent(content);
+                s.setDescription(description);
+                s.setCreationDate(new Date());
+                s.setOwner(LoginController.connectedUser);
+                repoScript.save(s);
+            }
+
+        }else{
+            //Modification
+            Script s = repoScript.findById(id);
+
+            if (LoginController.connectedUser != null && s != null && s.getOwner().getId() == LoginController.connectedUser.getId()){
+
+                History h = new History();
+                h.setScript(s);
+                h.setDate(s.getCreationDate());
+                h.setContent(s.getContent());
+                h.setComment(s.getDescription());
+                repoHistory.save(h);
+
+                s.setTitle(title);
+                s.setContent(content);
+                s.setDescription(description);
+                s.setCreationDate(new Date());
+                s.setOwner(LoginController.connectedUser);
+                repoScript.save(s);
+            }
         }
+
 
         return new RedirectView("/");
 
@@ -75,12 +102,12 @@ public class ScriptController {
 
 
     @GetMapping("/script/{id}")
-    public String consulterScript(ModelMap model, @PathVariable int id){
+    public String consulterScript(ModelMap model, @PathVariable int id) {
 
         Script s = repoScript.findById(id);
 
-        if (s != null){
-            if (s.getOwner().getId() == LoginController.connectedUser.getId()){
+        if (s != null) {
+            if (s.getOwner().getId() == LoginController.connectedUser.getId()) {
 
                 vue.addData("valid", true);
                 vue.addData("id", s.getId());
@@ -92,42 +119,16 @@ public class ScriptController {
                 model.put("vue", this.vue);
                 return "formModifScript";
 
-            }else{
-                vue.addData("message","Ce script n'est pas le votre !");
-                model.put("vue",this.vue);
+            } else {
+                vue.addData("message", "Ce script n'est pas le votre !");
+                model.put("vue", this.vue);
                 return "pasLesDroits";
             }
-        }else{
-            vue.addData("message","Ce script n'existe pas !");
-            model.put("vue",this.vue);
+        } else {
+            vue.addData("message", "Ce script n'existe pas !");
+            model.put("vue", this.vue);
             return "404";
         }
-
-    }
-
-    @PostMapping("/script/modifier")
-    public RedirectView modifScript(@RequestParam int id, @RequestParam String title, @RequestParam String description, @RequestParam String content) {
-
-        Script s = repoScript.findById(id);
-
-        if (LoginController.connectedUser != null && s != null && s.getOwner().getId() == LoginController.connectedUser.getId()){
-
-            History h = new History();
-            h.setVersion(s);
-            h.setDate(s.getCreationDate());
-            h.setContent(s.getContent());
-            h.setComment(s.getDescription());
-            repoHistory.save(h);
-
-            s.setTitle(title);
-            s.setContent(content);
-            s.setDescription(description);
-            s.setCreationDate(new Date());
-            s.setOwner(LoginController.connectedUser);
-            repoScript.save(s);
-        }
-
-        return new RedirectView("/");
 
     }
 
