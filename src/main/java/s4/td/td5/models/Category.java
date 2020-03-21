@@ -16,7 +16,7 @@ public class Category {
     private String name;
 
     @JsonBackReference
-    @OneToMany(cascade=CascadeType.PERSIST,mappedBy="category")
+    @OneToMany(cascade=CascadeType.ALL,mappedBy="category")
     private List<Script> scripts;
 
     public String getName() {

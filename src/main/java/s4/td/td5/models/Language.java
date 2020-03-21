@@ -16,7 +16,7 @@ public class Language {
     private String name;
 
     @JsonBackReference
-    @OneToMany(cascade=CascadeType.PERSIST,mappedBy="language")
+    @OneToMany(cascade=CascadeType.ALL,mappedBy="language")
     private List<Script> scripts;
 
     public String getName() {

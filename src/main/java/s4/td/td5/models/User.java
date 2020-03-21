@@ -22,7 +22,7 @@ public class User {
     private String identity;
 
     @JsonBackReference
-    @OneToMany(cascade=CascadeType.PERSIST,mappedBy="owner", fetch = FetchType.EAGER)
+    @OneToMany(cascade=CascadeType.ALL,mappedBy="owner", fetch = FetchType.EAGER)
     private List<Script> scripts;
 
     public int getId() {

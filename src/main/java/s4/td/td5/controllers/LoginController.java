@@ -10,6 +10,7 @@ import s4.td.td5.models.User;
 import s4.td.td5.repositories.UserRepository;
 
 @Controller
+@SessionAttributes("connectedUser")
 @RequestMapping(
         method={RequestMethod.POST,RequestMethod.GET}
 )
@@ -20,8 +21,6 @@ public class LoginController {
 
     @Autowired
     private UserRepository repoUser;
-
-    public static User connectedUser;
 
 
     @GetMapping("/")
@@ -44,18 +43,18 @@ public class LoginController {
     }
 
     @PostMapping("/connexion")
-    public RedirectView connexion(@RequestParam String login, @RequestParam String password) {
+    public RedirectView connexion(@RequestParam String login, @RequestParam String password, @ModelAttribute("connectedUser") User connectedUser) {
 
-        LoginController.connectedUser = repoUser.connexion(login, password);
+        connectedUser = repoUser.connexion(login, password);
 
         return new RedirectView("/index");
 
     }
 
     @PostMapping("/logout")
-    public RedirectView deconnexion() {
+    public RedirectView deconnexion(@ModelAttribute("connectedUser") User connectedUser) {
 
-        LoginController.connectedUser = null;
+        connectedUser = null;
 
         return new RedirectView("/index");
 
@@ -76,7 +75,7 @@ public class LoginController {
     }
 
     @PostMapping("/inscription")
-    public RedirectView processInscription(@RequestParam String login, @RequestParam String password1, @RequestParam String password2) {
+    public RedirectView processInscription(@RequestParam String login, @RequestParam String password1, @RequestParam String password2, @ModelAttribute("connectedUser") User connectedUser) {
 
         if (password1.equals(password2)){
 
@@ -85,7 +84,7 @@ public class LoginController {
             u.setLogin(login);
 
             repoUser.save(u);
-            LoginController.connectedUser = u;
+            connectedUser = u;
 
             return new RedirectView("/index");
         }else{
@@ -94,5 +93,8 @@ public class LoginController {
 
     }
 
-
+    @ModelAttribute("connectedUser")
+    public User connectedUser() {
+        return new User();
+    }
 }

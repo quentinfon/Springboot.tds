@@ -42,7 +42,7 @@ public class Script {
     private Language language;
 
     @JsonBackReference
-    @OneToMany(cascade=CascadeType.PERSIST,mappedBy="script", fetch = FetchType.EAGER)
+    @OneToMany(cascade=CascadeType.ALL,mappedBy="script", fetch = FetchType.EAGER)
     private List<History> history;
 
 

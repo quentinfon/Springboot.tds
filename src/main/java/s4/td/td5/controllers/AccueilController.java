@@ -33,21 +33,21 @@ public class AccueilController {
 
 
     @GetMapping("/index")
-    public String viewAccueil(ModelMap model){
+    public String viewAccueil(ModelMap model, @SessionAttribute("connectedUser") User connectedUser){
 
         vue.addDataRaw("headers","[ { text: 'Titre', align: 'start', sortable: false, value: 'title' }, { text: 'Description', value: 'description' }, { text: 'Date dernière modification', value: 'strCreationDate' }, { text: 'Actions', value: 'actions', sortable: false } ]");
 
         List<Script> scripts = null;
 
-        if (LoginController.connectedUser != null) {
-            scripts = repoScript.findByOwner(LoginController.connectedUser);
+        if (connectedUser.getLogin() != null) {
+            scripts = repoScript.findByOwner(connectedUser);
         }
         vue.addData("listeScripts", scripts);
 
 
-        if(LoginController.connectedUser != null){
+        if(connectedUser != null){
             vue.addData("connecter", true);
-            vue.addData("user", LoginController.connectedUser.getLogin());
+            vue.addData("user", connectedUser.getLogin());
         }else{
             vue.addData("connecter", false);
         }

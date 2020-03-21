@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.view.RedirectView;
 import s4.td.td5.models.History;
 import s4.td.td5.models.Script;
+import s4.td.td5.models.User;
 import s4.td.td5.repositories.HistoryRepository;
 import s4.td.td5.repositories.ScriptRepository;
 import s4.td.td5.repositories.UserRepository;
@@ -32,9 +33,9 @@ public class ScriptController {
     private HistoryRepository repoHistory;
 
     @GetMapping("/script/new")
-    public String viewNewScript(ModelMap model){
+    public String viewNewScript(ModelMap model, @SessionAttribute("connectedUser") User connectedUser){
 
-        if (LoginController.connectedUser != null){
+        if (connectedUser.getLogin() != null){
 
             vue.addData("valid", true);
             vue.addData("id", -1);
@@ -59,17 +60,17 @@ public class ScriptController {
     }
 
     @PostMapping("/script/submit")
-    public RedirectView connexion(@RequestParam int id, @RequestParam String title, @RequestParam String description, @RequestParam String content) {
+    public RedirectView connexion(@RequestParam int id, @RequestParam String title, @RequestParam String description, @RequestParam String content, @SessionAttribute("connectedUser") User connectedUser) {
 
         if (id == -1){
             //Création
-            if (LoginController.connectedUser != null){
+            if (connectedUser.getLogin() != null){
                 Script s = new Script();
                 s.setTitle(title);
                 s.setContent(content);
                 s.setDescription(description);
                 s.setCreationDate(new Date());
-                s.setOwner(LoginController.connectedUser);
+                s.setOwner(connectedUser);
                 repoScript.save(s);
             }
 
@@ -77,7 +78,7 @@ public class ScriptController {
             //Modification
             Script s = repoScript.findById(id);
 
-            if (LoginController.connectedUser != null && s != null && s.getOwner().getId() == LoginController.connectedUser.getId()){
+            if (connectedUser.getLogin() != null && s != null && s.getOwner().getId() == connectedUser.getId()){
 
                 History h = new History();
                 h.setScript(s);
@@ -90,7 +91,7 @@ public class ScriptController {
                 s.setContent(content);
                 s.setDescription(description);
                 s.setCreationDate(new Date());
-                s.setOwner(LoginController.connectedUser);
+                s.setOwner(connectedUser);
                 repoScript.save(s);
             }
         }
@@ -102,12 +103,12 @@ public class ScriptController {
 
 
     @GetMapping("/script/{id}")
-    public String consulterScript(ModelMap model, @PathVariable int id) {
+    public String consulterScript(ModelMap model, @PathVariable int id, @SessionAttribute("connectedUser") User connectedUser) {
 
         Script s = repoScript.findById(id);
 
         if (s != null) {
-            if (s.getOwner().getId() == LoginController.connectedUser.getId()) {
+            if (s.getOwner().getId() == connectedUser.getId()) {
 
                 vue.addData("valid", true);
                 vue.addData("id", s.getId());
