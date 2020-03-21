@@ -35,12 +35,12 @@ public class AccueilController {
     @GetMapping("/index")
     public String viewAccueil(ModelMap model){
 
-        vue.addDataRaw("headers","[ { text: 'Titre', align: 'start', sortable: false, value: 'title' }, { text: 'Description', value: 'description' }, { text: 'Date dernière modification', value: 'dateModif' } ]");
+        vue.addDataRaw("headers","[ { text: 'Titre', align: 'start', sortable: false, value: 'title' }, { text: 'Description', value: 'description' }, { text: 'Date dernière modification', value: 'strCreationDate' }, { text: 'Actions', value: 'actions', sortable: false } ]");
 
         List<Script> scripts = null;
 
         if (LoginController.connectedUser != null) {
-            scripts = LoginController.connectedUser.getScripts();
+            scripts = repoScript.findByOwner(LoginController.connectedUser);
         }
         vue.addData("listeScripts", scripts);
 

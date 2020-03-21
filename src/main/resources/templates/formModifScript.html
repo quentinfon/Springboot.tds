@@ -23,8 +23,9 @@
 
             <v-text-field
                     v-model="title"
-                    label="title"
+                    label="Titre"
                     name="title"
+                    counter="255"
                     required
             ></v-text-field>
 
@@ -32,15 +33,17 @@
                     v-model="description"
                     name="description"
                     label="Description"
+                    counter="255"
                     required
             ></v-text-field>
 
-            <v-text-field
+            <v-textarea
                     v-model="content"
                     name="content"
                     label="Contenu"
+                    counter="5000"
                     required
-            ></v-text-field>
+            ></v-textarea>
 
 
             <v-btn

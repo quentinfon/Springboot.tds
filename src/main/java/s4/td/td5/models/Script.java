@@ -6,6 +6,7 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import javax.persistence.*;
+import javax.validation.constraints.Size;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -20,9 +21,15 @@ public class Script {
 
     private String title;
     private String description;
+
+    @Column(length = 5000)
     private String content;
+
     private Date creationDate;
 
+    private String strCreationDate;
+
+    @JsonManagedReference
     @ManyToOne
     private Category category;
 
@@ -30,9 +37,11 @@ public class Script {
     @ManyToOne
     private User owner;
 
+    @JsonManagedReference
     @ManyToOne
     private Language language;
 
+    @JsonBackReference
     @OneToMany(cascade=CascadeType.PERSIST,mappedBy="script", fetch = FetchType.EAGER)
     private List<History> history;
 
@@ -55,6 +64,8 @@ public class Script {
 
     public void setCreationDate(Date creationDate) {
         this.creationDate = creationDate;
+        DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy HH:mm");
+        setStrCreationDate(dateFormat.format(creationDate));
     }
 
     public String getTitle() {
@@ -105,8 +116,11 @@ public class Script {
         this.history = history;
     }
 
-    public String dateCreation(){
-        DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy HH:mm");
-        return dateFormat.format(creationDate);
+    public String getStrCreationDate() {
+        return strCreationDate;
+    }
+
+    public void setStrCreationDate(String strCreationDate) {
+        this.strCreationDate = strCreationDate;
     }
 }

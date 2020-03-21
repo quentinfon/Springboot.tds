@@ -25,37 +25,45 @@
         </v-col>
 
     </v-row>
-    <v-row>
-        <v-col class="text-center" cols="12" sm="4">
-            <div v-if="connecter">
-                <h3>Bienvenue <% user %></h3>
-            </div>
-        </v-col>
-    </v-row>
 
 
-    <template>
+    <template v-if="connecter">
+        <h3>Bienvenue <% user %></h3>
         <v-data-table
                 :headers="headers"
                 :items="listeScripts"
                 class="elevation-1"
+                :footer-props="{'items-per-page-text':'Scripts par page'}"
         >
 
+
             <template v-slot:items="props">
-                <td class="text-xs-right"><% props.item.title %></td>
-                <td class="text-xs-right"><% props.item.description %></td>
-                <td class="text-xs-right"><% props.item.creationDate %></td>
+                <tr>
+                    <td class="text-xs-right"><% props.item.title %></td>
+                    <td class="text-xs-right"><% props.item.description %></td>
+                    <td class="text-xs-right"><% props.item.strCreationDate %></td>
+                    <td class="text-xs-right">
+                        test
+                        <v-icon small href="/script">edit</v-icon>
+                        <v-icon small>delete</v-icon>
+                    </td>
+                </tr>
+            </template>
+            <template v-slot:no-data>
+                <br>
+                <v-alert text color="info" border="left">
+                    Aucun scripts à afficher.
+                </v-alert>
             </template>
             <template v-slot:pageText="props">
                 Lignes <% props.pageStart %> - <% props.pageStop %> de <% props.itemsLength %>
             </template>
         </v-data-table>
+        <v-btn class="ma-2" tile outlined color="success" href="/script/new" >
+            <v-icon left>add_circle_outline</v-icon> Ajouter un Script
+        </v-btn>
     </template>
 
-
-    <v-btn class="ma-2" tile outlined color="success">
-        <v-icon left>add_circle_outline</v-icon> Ajouter un Script
-    </v-btn>
 
 </template>
 

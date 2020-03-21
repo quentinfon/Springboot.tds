@@ -1,6 +1,9 @@
 package s4.td.td5.models;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import javax.persistence.*;
+import javax.validation.constraints.Size;
 import java.util.Date;
 
 @Entity
@@ -11,9 +14,12 @@ public class History {
     private int id;
 
     private String comment;
+
+    @Column(length = 5000)
     private String content;
     private Date date;
 
+    @JsonManagedReference
     @ManyToOne
     private Script script;
 

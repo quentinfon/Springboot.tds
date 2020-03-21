@@ -1,5 +1,7 @@
 package s4.td.td5.models;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import javax.persistence.*;
 import java.util.List;
 
@@ -13,6 +15,7 @@ public class Language {
     @Column(unique=true)
     private String name;
 
+    @JsonBackReference
     @OneToMany(cascade=CascadeType.PERSIST,mappedBy="language")
     private List<Script> scripts;
 
