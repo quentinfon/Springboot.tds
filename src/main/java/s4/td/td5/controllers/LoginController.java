@@ -61,4 +61,38 @@ public class LoginController {
 
     }
 
+    @PostMapping("/signup")
+    public String inscription(ModelMap model) {
+
+        vue.addData("valid", true);
+        vue.addData("login", "");
+        vue.addData("password1", "");
+        vue.addData("password2", "");
+        vue.addMethod("validate", "if(this.$refs.form.validate()){ signupForm.submit(); }");
+        vue.addMethod("reset", "this.$refs.form.reset()");
+        model.put("vue", this.vue);
+        return "signupPage";
+
+    }
+
+    @PostMapping("/inscription")
+    public RedirectView processInscription(@RequestParam String login, @RequestParam String password1, @RequestParam String password2) {
+
+        if (password1.equals(password2)){
+
+            User u = new User();
+            u.setPassword(password1);
+            u.setLogin(login);
+
+            repoUser.save(u);
+            LoginController.connectedUser = u;
+
+            return new RedirectView("/index");
+        }else{
+            return new RedirectView("/signup");
+        }
+
+    }
+
+
 }

@@ -37,15 +37,18 @@
         >
 
 
-            <template v-slot:items="props">
+            <template v-slot:item="props">
                 <tr>
                     <td class="text-xs-right"><% props.item.title %></td>
                     <td class="text-xs-right"><% props.item.description %></td>
                     <td class="text-xs-right"><% props.item.strCreationDate %></td>
                     <td class="text-xs-right">
-                        test
-                        <v-icon small href="/script">edit</v-icon>
-                        <v-icon small>delete</v-icon>
+                        <v-btn class="ma-2" tile outlined href="/script/new" >
+                            <v-icon small>edit</v-icon>
+                        </v-btn>
+                        <v-btn class="ma-2" tile outlined color="error" href="/script/new" >
+                            <v-icon small>delete</v-icon>
+                        </v-btn>
                     </td>
                 </tr>
             </template>

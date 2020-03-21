@@ -2,14 +2,14 @@
 
 <div>
 
-    <h1>Connexion au site</h1>
+    <h1>Inscription</h1>
 
     <template>
         <v-form
                 method="post"
-                action="/connexion"
+                action="/inscription"
                 ref="form"
-                id="logForm"
+                id="signupForm"
                 v-model="valid"
                 lazy-validation
         >
@@ -22,8 +22,16 @@
             ></v-text-field>
 
             <v-text-field
-                    v-model="password"
-                    name="password"
+                    v-model="password1"
+                    name="password1"
+                    type="password"
+                    label="Mot de passe"
+                    required
+            ></v-text-field>
+
+            <v-text-field
+                    v-model="password2"
+                    name="password2"
                     type="password"
                     label="Mot de passe"
                     required
@@ -35,7 +43,7 @@
                     color="success"
                     @click="validate"
             >
-                Connexion
+                Inscription
             </v-btn>
 
             <v-btn
@@ -43,15 +51,6 @@
                     @click="reset"
             >
                 Reset
-            </v-btn>
-
-            <v-btn
-                    :disabled="!valid"
-                    color="purple darken-2"
-                    @click="validate"
-                    href="/signup"
-            >
-                S'inscrire
             </v-btn>
 
 
