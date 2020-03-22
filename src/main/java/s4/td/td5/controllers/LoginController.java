@@ -9,6 +9,8 @@ import org.springframework.web.servlet.view.RedirectView;
 import s4.td.td5.models.User;
 import s4.td.td5.repositories.UserRepository;
 
+import javax.servlet.http.HttpSession;
+
 @Controller
 @SessionAttributes("connectedUser")
 @RequestMapping(
@@ -52,12 +54,10 @@ public class LoginController {
     }
 
     @PostMapping("/logout")
-    public RedirectView deconnexion(@ModelAttribute("connectedUser") User connectedUser) {
-
+    public RedirectView deconnexion(@ModelAttribute("connectedUser") User connectedUser, HttpSession session) {
         connectedUser = null;
-
+        session.invalidate();
         return new RedirectView("/index");
-
     }
 
     @PostMapping("/signup")
@@ -95,6 +95,6 @@ public class LoginController {
 
     @ModelAttribute("connectedUser")
     public User connectedUser() {
-        return new User();
+        return null;
     }
 }

@@ -39,7 +39,7 @@ public class AccueilController {
 
         List<Script> scripts = null;
 
-        if (connectedUser.getLogin() != null) {
+        if (connectedUser != null) {
             scripts = repoScript.findByOwner(connectedUser);
         }
         vue.addData("listeScripts", scripts);
@@ -55,5 +55,6 @@ public class AccueilController {
 
         return "index";
     }
+
 
 }
