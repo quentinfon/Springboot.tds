@@ -77,7 +77,7 @@ public class LoginController {
     @PostMapping("/inscription")
     public RedirectView processInscription(@RequestParam String login, @RequestParam String password1, @RequestParam String password2, HttpSession session) {
 
-        if (password1.equals(password2)){
+        if (password1.equals(password2) && repoUser.findByLogin(login) == null){
 
             User u = new User();
             u.setPassword(password1);
