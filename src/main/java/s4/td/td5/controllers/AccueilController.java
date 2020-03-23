@@ -11,6 +11,7 @@ import s4.td.td5.models.User;
 import s4.td.td5.repositories.ScriptRepository;
 import s4.td.td5.repositories.UserRepository;
 
+import javax.servlet.http.HttpSession;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -33,7 +34,9 @@ public class AccueilController {
 
 
     @GetMapping("/index")
-    public String viewAccueil(ModelMap model, @SessionAttribute("connectedUser") User connectedUser){
+    public String viewAccueil(ModelMap model, HttpSession session){
+
+        User connectedUser = (User) session.getAttribute("connectedUser");
 
         vue.addDataRaw("headers","[ { text: 'Titre', align: 'start', sortable: false, value: 'title' }, { text: 'Description', value: 'description' }, { text: 'Date dernière modification', value: 'strCreationDate' }, { text: 'Actions', value: 'actions', sortable: false } ]");
 

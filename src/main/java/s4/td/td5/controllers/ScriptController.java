@@ -12,6 +12,8 @@ import s4.td.td5.models.User;
 import s4.td.td5.repositories.HistoryRepository;
 import s4.td.td5.repositories.ScriptRepository;
 import s4.td.td5.repositories.UserRepository;
+
+import javax.servlet.http.HttpSession;
 import java.util.Date;
 
 @Controller
@@ -33,9 +35,11 @@ public class ScriptController {
     private HistoryRepository repoHistory;
 
     @GetMapping("/script/new")
-    public String viewNewScript(ModelMap model, @SessionAttribute("connectedUser") User connectedUser){
+    public String viewNewScript(ModelMap model, HttpSession session){
 
-        if (connectedUser.getLogin() != null){
+        User connectedUser = (User) session.getAttribute("connectedUser");
+
+        if (connectedUser != null){
 
             vue.addData("valid", true);
             vue.addData("id", -1);
@@ -60,11 +64,13 @@ public class ScriptController {
     }
 
     @PostMapping("/script/submit")
-    public RedirectView connexion(@RequestParam int id, @RequestParam String title, @RequestParam String description, @RequestParam String content, @SessionAttribute("connectedUser") User connectedUser) {
+    public RedirectView connexion(@RequestParam int id, @RequestParam String title, @RequestParam String description, @RequestParam String content, HttpSession session) {
+
+        User connectedUser = (User) session.getAttribute("connectedUser");
 
         if (id == -1){
             //Création
-            if (connectedUser.getLogin() != null){
+            if (connectedUser != null){
                 Script s = new Script();
                 s.setTitle(title);
                 s.setContent(content);
@@ -78,7 +84,7 @@ public class ScriptController {
             //Modification
             Script s = repoScript.findById(id);
 
-            if (connectedUser.getLogin() != null && s != null && s.getOwner().getId() == connectedUser.getId()){
+            if (connectedUser != null && s != null && s.getOwner().getId() == connectedUser.getId()){
 
                 History h = new History();
                 h.setScript(s);
@@ -103,11 +109,22 @@ public class ScriptController {
 
 
     @GetMapping("/script/{id}")
-    public String consulterScript(ModelMap model, @PathVariable int id, @SessionAttribute("connectedUser") User connectedUser) {
+    public String consulterScript(ModelMap model, @PathVariable int id, HttpSession session) {
+
+        User connectedUser = (User) session.getAttribute("connectedUser");
 
         Script s = repoScript.findById(id);
 
-        if (s != null) {
+        if (connectedUser == null){
+            vue.addData("valid", true);
+            vue.addData("login", "");
+            vue.addData("password", "");
+            vue.addMethod("validate", "if(this.$refs.form.validate()){ logForm.submit(); }");
+            vue.addMethod("reset", "this.$refs.form.reset()");
+            model.put("vue", this.vue);
+            return "loginPage";
+        }
+        else if (s != null) {
             if (s.getOwner().getId() == connectedUser.getId()) {
 
                 vue.addData("valid", true);
@@ -125,7 +142,7 @@ public class ScriptController {
                 model.put("vue", this.vue);
                 return "pasLesDroits";
             }
-        } else {
+        }else {
             vue.addData("message", "Ce script n'existe pas !");
             model.put("vue", this.vue);
             return "404";

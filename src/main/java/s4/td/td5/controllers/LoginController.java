@@ -12,7 +12,6 @@ import s4.td.td5.repositories.UserRepository;
 import javax.servlet.http.HttpSession;
 
 @Controller
-@SessionAttributes("connectedUser")
 @RequestMapping(
         method={RequestMethod.POST,RequestMethod.GET}
 )
@@ -45,18 +44,19 @@ public class LoginController {
     }
 
     @PostMapping("/connexion")
-    public RedirectView connexion(@RequestParam String login, @RequestParam String password, @ModelAttribute("connectedUser") User connectedUser) {
+    public RedirectView connexion(@RequestParam String login, @RequestParam String password, HttpSession session) {
 
-        connectedUser = repoUser.connexion(login, password);
+        session.setAttribute("connectedUser",repoUser.connexion(login, password));
 
         return new RedirectView("/index");
 
     }
 
     @PostMapping("/logout")
-    public RedirectView deconnexion(@ModelAttribute("connectedUser") User connectedUser, HttpSession session) {
-        connectedUser = null;
+    public RedirectView deconnexion(HttpSession session) {
+
         session.invalidate();
+
         return new RedirectView("/index");
     }
 
@@ -75,7 +75,7 @@ public class LoginController {
     }
 
     @PostMapping("/inscription")
-    public RedirectView processInscription(@RequestParam String login, @RequestParam String password1, @RequestParam String password2, @ModelAttribute("connectedUser") User connectedUser) {
+    public RedirectView processInscription(@RequestParam String login, @RequestParam String password1, @RequestParam String password2, HttpSession session) {
 
         if (password1.equals(password2)){
 
@@ -84,7 +84,7 @@ public class LoginController {
             u.setLogin(login);
 
             repoUser.save(u);
-            connectedUser = u;
+            session.setAttribute("connectedUser", u);
 
             return new RedirectView("/index");
         }else{
@@ -93,8 +93,4 @@ public class LoginController {
 
     }
 
-    @ModelAttribute("connectedUser")
-    public User connectedUser() {
-        return null;
-    }
 }
