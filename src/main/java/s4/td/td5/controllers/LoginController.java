@@ -48,6 +48,10 @@ public class LoginController {
 
         session.setAttribute("connectedUser",repoUser.connexion(login, password));
 
+        if (session.getAttribute("connectedUser") == null){
+            return new RedirectView("/login");
+        }
+
         return new RedirectView("/index");
 
     }
