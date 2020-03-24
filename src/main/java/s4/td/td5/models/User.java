@@ -9,6 +9,7 @@ import javax.persistence.*;
 import java.util.List;
 
 @Entity
+@JsonIgnoreProperties(value = { "password" })
 public class User {
     @Id
     @GeneratedValue(strategy= GenerationType.AUTO)
