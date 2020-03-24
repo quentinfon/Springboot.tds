@@ -150,5 +150,39 @@ public class ScriptController {
 
     }
 
+    @GetMapping("/search")
+    public String rechercheScript(ModelMap model, HttpSession session) {
+
+        User connectedUser = (User) session.getAttribute("connectedUser");
+
+        if(connectedUser != null){
+            vue.addData("connecter", true);
+            vue.addData("user", connectedUser.getLogin());
+        }else{
+            vue.addData("connecter", false);
+        }
+
+        vue.addDataRaw("headers","[ { text: 'Titre', align: 'start', sortable: false, value: 'title' }, { text: 'Description', value: 'description' }, { text: 'Date dernière modification', value: 'strCreationDate' } ]");
+
+        vue.addData("listeScripts");
+
+        vue.addData("recherche", "");
+
+        vue.addMethod("getData", "var route = '/rest/script/search/'+this.recherche; this.$http.get(route).then((response)=>{ " +
+                "this.listeScripts = [];"+
+                "for(var i = 0; i< response.data.length;i++)" +
+                "{" +
+                "this.listeScripts.push({" +
+                "title: response.data[i].title," +
+                "description: response.data[i].description," +
+                "strCreationDate: response.data[i].strCreationDate" +
+                "});" +
+                "}});");
+
+        model.put("vue", this.vue);
+
+        return "recherche";
+    }
+
 
 }

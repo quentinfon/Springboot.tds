@@ -1,0 +1,74 @@
+{{> ./main/header}}
+
+<template xmlns:v-slot="http://www.w3.org/1999/XSL/Transform">
+    <v-row align="center">
+
+        <v-col class="text-center" cols="12" sm="4">
+            <h1>Gestionnaire de Scripts</h1>
+        </v-col>
+
+        <v-col class="text-center" cols="12" sm="4">
+
+        </v-col>
+
+        <v-col class="text-center" cols="12" sm="4">
+            <div class="my-2">
+
+                <div v-if="connecter">
+                    <v-btn text color="error" href="/logout">Deconnexion</v-btn>
+                </div>
+                <div v-else>
+                    <v-btn text href="/login">Connexion</v-btn>
+                </div>
+
+            </div>
+        </v-col>
+
+    </v-row>
+
+
+    <template>
+
+        <v-text-field
+                v-model="recherche"
+                label="Recherche"
+                v-on:input="getData"
+        ></v-text-field>
+
+        <v-data-table
+                :headers="headers"
+                :items="listeScripts"
+                class="elevation-1"
+                :footer-props="{'items-per-page-text':'Scripts par page'}"
+        >
+
+
+            <template v-slot:item="props">
+                <tr>
+                    <td class="text-xs-right"><% props.item.title %></td>
+                    <td class="text-xs-right"><% props.item.description %></td>
+                    <td class="text-xs-right"><% props.item.strCreationDate %></td>
+                </tr>
+            </template>
+            <template v-slot:no-data>
+                <br>
+                <v-alert text color="info" border="left">
+                    Aucun scripts à afficher.
+                </v-alert>
+            </template>
+            <template v-slot:pageText="props">
+                Lignes <% props.pageStart %> - <% props.pageStop %> de <% props.itemsLength %>
+            </template>
+        </v-data-table>
+
+    </template>
+
+
+</template>
+
+
+{{> ./main/footer}}
+
+{{{vue}}}
+
+
