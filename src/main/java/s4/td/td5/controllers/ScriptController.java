@@ -204,9 +204,18 @@ public class ScriptController {
         vue.addData("valueLangage", lang);
         vue.addData("itemsLangage", lang);
 
+        ArrayList<String> users = new ArrayList<String>();
+        users.add("Tous");
+        for (User u:repoUser.findAll()){
+            users.add(u.getIdentity());
+        }
+
+        vue.addData("valueUtilisateur", "Tous");
+        vue.addData("utilisateurs", users);
+
         vue.addDataRaw("headers","[ { text: 'Titre', align: 'start', value: 'title' }, { text: 'Description', value: 'description' }, { text: 'Date dernière modification', value: 'strCreationDate' } ]");
 
-        vue.addData("listeScripts");
+        vue.addData("listeScripts", repoScript.findAll());
 
         vue.addData("recherche", "");
 
@@ -217,11 +226,13 @@ public class ScriptController {
                 "{" +
                 "if(response.data[i].language == null || this.valueLangage.indexOf(response.data[i].language.name) != -1){" +
                 "if(response.data[i].category == null || this.valueCategorie.indexOf(response.data[i].category.name) != -1){" +
+                "if(response.data[i].owner == null || this.valueUtilisateur == 'Tous' || this.valueUtilisateur == response.data[i].owner.identity){" +
                 "this.listeScripts.push({" +
                 "title: response.data[i].title," +
                 "description: response.data[i].description," +
                 "strCreationDate: response.data[i].strCreationDate" +
                 "});" +
+                "}" +
                 "}" +
                 "}" +
                 "}});");

@@ -52,7 +52,7 @@ public class AccueilController {
 
         if(connectedUser != null){
             vue.addData("connecter", true);
-            vue.addData("user", connectedUser.getLogin());
+            vue.addData("user", connectedUser.getIdentity());
         }else{
             vue.addData("connecter", false);
         }
