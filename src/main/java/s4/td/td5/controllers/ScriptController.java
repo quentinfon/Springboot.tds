@@ -10,6 +10,7 @@ import s4.td.td5.models.*;
 import s4.td.td5.repositories.*;
 
 import javax.servlet.http.HttpSession;
+import java.util.ArrayList;
 import java.util.Date;
 
 @Controller
@@ -189,11 +190,19 @@ public class ScriptController {
             vue.addData("connecter", false);
         }
 
-        vue.addData("valueCategorie", repoCategory.findAll());
-        vue.addData("itemsCategorie", repoCategory.findAll());
+        ArrayList<String> cat = new ArrayList<String>();
+        for (Category c:repoCategory.findAll()){
+            cat.add(c.getName());
+        }
+        vue.addData("valueCategorie", cat);
+        vue.addData("itemsCategorie", cat);
 
-        vue.addData("valueLangage", repoLangage.findAll());
-        vue.addData("itemsLangage", repoLangage.findAll());
+        ArrayList<String> lang = new ArrayList<String>();
+        for (Language l:repoLangage.findAll()){
+            lang.add(l.getName());
+        }
+        vue.addData("valueLangage", lang);
+        vue.addData("itemsLangage", lang);
 
         vue.addDataRaw("headers","[ { text: 'Titre', align: 'start', value: 'title' }, { text: 'Description', value: 'description' }, { text: 'Date dernière modification', value: 'strCreationDate' } ]");
 
@@ -203,13 +212,18 @@ public class ScriptController {
 
         vue.addMethod("getData", "var route = '/rest/script/search/'+this.recherche; this.$http.get(route).then((response)=>{ " +
                 "this.listeScripts = [];"+
+                "console.log(this.valueLangage);"+
                 "for(var i = 0; i< response.data.length;i++)" +
                 "{" +
+                "if(response.data[i].language == null || this.valueLangage.indexOf(response.data[i].language.name) != -1){" +
+                "if(response.data[i].category == null || this.valueCategorie.indexOf(response.data[i].category.name) != -1){" +
                 "this.listeScripts.push({" +
                 "title: response.data[i].title," +
                 "description: response.data[i].description," +
                 "strCreationDate: response.data[i].strCreationDate" +
                 "});" +
+                "}" +
+                "}" +
                 "}});");
 
         model.put("vue", this.vue);
