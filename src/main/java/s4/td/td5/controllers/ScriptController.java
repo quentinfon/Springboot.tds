@@ -189,6 +189,11 @@ public class ScriptController {
             vue.addData("connecter", false);
         }
 
+        vue.addData("valueCategorie", repoCategory.findAll());
+        vue.addData("itemsCategorie", repoCategory.findAll());
+
+        vue.addData("valueLangage", repoLangage.findAll());
+        vue.addData("itemsLangage", repoLangage.findAll());
 
         vue.addDataRaw("headers","[ { text: 'Titre', align: 'start', value: 'title' }, { text: 'Description', value: 'description' }, { text: 'Date dernière modification', value: 'strCreationDate' } ]");
 

@@ -5,11 +5,39 @@
 
     <template>
 
-        <v-text-field
-                v-model="recherche"
-                label="Recherche"
-                v-on:input="getData"
-        ></v-text-field>
+        <v-row>
+            <v-col cols="12" sm="4">
+                <v-text-field
+                        v-model="recherche"
+                        label="Recherche"
+                        v-on:input="getData"
+                ></v-text-field>
+            </v-col>
+
+            <v-col cols="12" sm="4">
+                <v-select
+                        v-model="valueLangage"
+                        :items="itemsLangage"
+                        chips
+                        label="Langages"
+                        multiple
+                        outlined
+                        item-text="name"
+                ></v-select>
+            </v-col>
+
+            <v-col cols="12" sm="4">
+                <v-select
+                        v-model="valueCategorie"
+                        :items="itemsCategorie"
+                        chips
+                        label="Categories"
+                        multiple
+                        outlined
+                        item-text="name"
+                ></v-select>
+            </v-col>
+        </v-row>
 
         <v-data-table
                 :headers="headers"
