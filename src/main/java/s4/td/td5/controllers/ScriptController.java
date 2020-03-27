@@ -6,12 +6,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.view.RedirectView;
-import s4.td.td5.models.History;
-import s4.td.td5.models.Script;
-import s4.td.td5.models.User;
-import s4.td.td5.repositories.HistoryRepository;
-import s4.td.td5.repositories.ScriptRepository;
-import s4.td.td5.repositories.UserRepository;
+import s4.td.td5.models.*;
+import s4.td.td5.repositories.*;
 
 import javax.servlet.http.HttpSession;
 import java.util.Date;
@@ -34,6 +30,12 @@ public class ScriptController {
     @Autowired
     private HistoryRepository repoHistory;
 
+    @Autowired
+    private LanguageRepository repoLangage;
+
+    @Autowired
+    private CategoryRepository repoCategory;
+
     @GetMapping("/script/new")
     public String viewNewScript(ModelMap model, HttpSession session){
 
@@ -41,6 +43,8 @@ public class ScriptController {
 
         if (connectedUser != null){
 
+            vue.addData("langages", repoLangage.findAll());
+            vue.addData("categories", repoCategory.findAll());
             vue.addData("valid", true);
             vue.addData("id", -1);
             vue.addData("title", "");
@@ -64,7 +68,7 @@ public class ScriptController {
     }
 
     @PostMapping("/script/submit")
-    public RedirectView connexion(@RequestParam int id, @RequestParam String title, @RequestParam String description, @RequestParam String content, HttpSession session) {
+    public RedirectView connexion(@RequestParam int id, @RequestParam String title, @RequestParam String description, @RequestParam String content, HttpSession session, @RequestParam(required = false) String langage, @RequestParam(required = false) String categorie) {
 
         User connectedUser = (User) session.getAttribute("connectedUser");
 
@@ -77,6 +81,15 @@ public class ScriptController {
                 s.setDescription(description);
                 s.setCreationDate(new Date());
                 s.setOwner(connectedUser);
+
+                if (repoCategory.findByName(categorie).size() > 0){
+                    s.setCategory(repoCategory.findByName(categorie).get(0));
+                }
+
+                if (repoLangage.findByName(langage).size() > 0){
+                    s.setLanguage(repoLangage.findByName(langage).get(0));
+                }
+
                 repoScript.save(s);
             }
 
@@ -98,6 +111,15 @@ public class ScriptController {
                 s.setDescription(description);
                 s.setCreationDate(new Date());
                 s.setOwner(connectedUser);
+
+                if (repoCategory.findByName(categorie).size() > 0){
+                    s.setCategory(repoCategory.findByName(categorie).get(0));
+                }
+
+                if (repoLangage.findByName(langage).size() > 0){
+                    s.setLanguage(repoLangage.findByName(langage).get(0));
+                }
+
                 repoScript.save(s);
             }
         }
@@ -127,6 +149,11 @@ public class ScriptController {
         else if (s != null) {
             if (s.getOwner().getId() == connectedUser.getId()) {
 
+                vue.addData("langages", repoLangage.findAll());
+                vue.addData("categories", repoCategory.findAll());
+
+                vue.addData("valueCategorie", s.getCategory());
+                vue.addData("valueLangage", s.getLanguage());
                 vue.addData("valid", true);
                 vue.addData("id", s.getId());
                 vue.addData("title", s.getTitle());
@@ -162,7 +189,8 @@ public class ScriptController {
             vue.addData("connecter", false);
         }
 
-        vue.addDataRaw("headers","[ { text: 'Titre', align: 'start', sortable: false, value: 'title' }, { text: 'Description', value: 'description' }, { text: 'Date dernière modification', value: 'strCreationDate' } ]");
+
+        vue.addDataRaw("headers","[ { text: 'Titre', align: 'start', value: 'title' }, { text: 'Description', value: 'description' }, { text: 'Date dernière modification', value: 'strCreationDate' } ]");
 
         vue.addData("listeScripts");
 
@@ -182,6 +210,23 @@ public class ScriptController {
         model.put("vue", this.vue);
 
         return "recherche";
+    }
+
+    @PostMapping("/script/delete/{id}")
+    public RedirectView supp(@PathVariable int id, HttpSession session) {
+
+        User connectedUser = (User) session.getAttribute("connectedUser");
+
+        Script s = repoScript.findById(id);
+
+        if (connectedUser != null && s != null && s.getOwner().getId() == connectedUser.getId()){
+
+            repoScript.delete(s);
+
+        }
+
+        return new RedirectView("/index");
+
     }
 
 

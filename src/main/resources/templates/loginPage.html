@@ -2,61 +2,82 @@
 
 <div>
 
-    <h1>Connexion au site</h1>
 
-    <template>
-        <v-form
-                method="post"
-                action="/connexion"
-                ref="form"
-                id="logForm"
-                v-model="valid"
-                lazy-validation
-        >
-
-            <v-text-field
-                    v-model="login"
-                    label="Login"
-                    name="login"
-                    required
-            ></v-text-field>
-
-            <v-text-field
-                    v-model="password"
-                    name="password"
-                    type="password"
-                    label="Mot de passe"
-                    required
-            ></v-text-field>
+    <v-row justify-center>
 
 
-            <v-btn
-                    :disabled="!valid"
-                    color="success"
-                    @click="validate"
+        <v-col cols="12">
+
+            <v-row
+                    align="center"
+                    justify="center"
+                    style="height: 300px;"
             >
-                Connexion
-            </v-btn>
+                <template>
+                    <v-form
+                            method="post"
+                            action="/connexion"
+                            ref="form"
+                            id="logForm"
+                            v-model="valid"
+                            lazy-validation
+                    >
 
-            <v-btn
-                    color="error"
-                    @click="reset"
-            >
-                Reset
-            </v-btn>
+                        <h3>Connexion au site</h3>
 
-            <v-btn
-                    :disabled="!valid"
-                    color="purple darken-2"
-                    @click="validate"
-                    href="/signup"
-            >
-                S'inscrire
-            </v-btn>
+                        <v-text-field
+                                v-model="login"
+                                label="Login"
+                                name="login"
+                                required
+                        ></v-text-field>
+
+                        <v-text-field
+                                v-model="password"
+                                name="password"
+                                type="password"
+                                label="Mot de passe"
+                                required
+                        ></v-text-field>
 
 
-        </v-form>
-    </template>
+                        <v-btn
+                                :disabled="!valid"
+                                color="success"
+                                @click="validate"
+                        >
+                            Connexion
+                        </v-btn>
+
+                        <v-btn
+                                color="error"
+                                @click="reset"
+                        >
+                            Reset
+                        </v-btn>
+
+                        <v-btn
+                                :disabled="!valid"
+                                color="purple"
+                                href="/signup"
+                        >
+                            S'inscrire
+                        </v-btn>
+
+                        <v-btn
+                                :disabled="!valid"
+                                color="success"
+                                href="/connexionauto"
+                        >
+                            Connexion Auto
+                        </v-btn>
+
+
+                    </v-form>
+                </template>
+            </v-row>
+        </v-col>
+    </v-row>
 
 
 </div>

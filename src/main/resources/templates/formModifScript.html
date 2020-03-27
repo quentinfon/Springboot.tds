@@ -45,6 +45,26 @@
                     required
             ></v-textarea>
 
+            <v-select
+                    v-model="valueLangage"
+                    :items="langages"
+                    label="Langage"
+                    dense
+                    outlined
+                    item-text="name"
+                    name="langage"
+            ></v-select>
+
+            <v-select
+                    v-model="valueCategorie"
+                    :items="categories"
+                    label="Categorie"
+                    dense
+                    outlined
+                    item-text="name"
+                    name="categorie"
+            ></v-select>
+
 
             <v-btn
                     :disabled="!valid"

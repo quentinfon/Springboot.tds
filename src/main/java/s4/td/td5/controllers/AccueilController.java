@@ -46,6 +46,7 @@ public class AccueilController {
             scripts = repoScript.findByOwner(connectedUser);
         }
         vue.addData("listeScripts", scripts);
+        vue.addData("dialog", false);
 
 
         if(connectedUser != null){

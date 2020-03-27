@@ -19,6 +19,8 @@ public interface UserRepository extends JpaRepository<User, Integer> {
 
     List<User> findByScripts(Script s);
 
+    List<User> findAll();
+
     @Query("select u from User u where upper(u.login) like %:search%")
     List<User> recherche(@Param("search")String recherche);
 

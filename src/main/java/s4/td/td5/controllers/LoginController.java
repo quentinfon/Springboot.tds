@@ -97,4 +97,12 @@ public class LoginController {
 
     }
 
+    @PostMapping("/connexionauto")
+    public RedirectView connexionAuto(HttpSession session) {
+
+        session.setAttribute("connectedUser",repoUser.findAll().get(0));
+
+        return new RedirectView("/index");
+    }
+
 }

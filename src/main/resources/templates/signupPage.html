@@ -1,64 +1,80 @@
 {{> ./main/header}}
 
-<div>
+    <br>
+    <br>
+    <br>
+    <br>
 
-    <h1>Inscription</h1>
-
-    <template>
-        <v-form
-                method="post"
-                action="/inscription"
-                ref="form"
-                id="signupForm"
-                v-model="valid"
-                lazy-validation
-        >
-
-            <v-text-field
-                    v-model="login"
-                    label="Login"
-                    name="login"
-                    required
-            ></v-text-field>
-
-            <v-text-field
-                    v-model="password1"
-                    name="password1"
-                    type="password"
-                    label="Mot de passe"
-                    required
-            ></v-text-field>
-
-            <v-text-field
-                    v-model="password2"
-                    name="password2"
-                    type="password"
-                    label="Mot de passe"
-                    required
-            ></v-text-field>
+    <v-row justify-center>
 
 
-            <v-btn
-                    :disabled="!valid"
-                    color="success"
-                    @click="validate"
+        <v-col cols="12">
+
+            <v-row
+                    align="center"
+                    justify="center"
+                    style="height: 300px;"
             >
-                Inscription
-            </v-btn>
-
-            <v-btn
-                    color="error"
-                    @click="reset"
-            >
-                Reset
-            </v-btn>
 
 
-        </v-form>
-    </template>
+                <template>
+                    <v-form
+                            method="post"
+                            action="/inscription"
+                            ref="form"
+                            id="signupForm"
+                            v-model="valid"
+                            lazy-validation
+                    >
+                        <h3>Inscription</h3>
+
+                        <v-text-field
+                                v-model="login"
+                                label="Login"
+                                name="login"
+                                required
+                        ></v-text-field>
+
+                        <v-text-field
+                                v-model="password1"
+                                name="password1"
+                                type="password"
+                                label="Mot de passe"
+                                required
+                        ></v-text-field>
+
+                        <v-text-field
+                                v-model="password2"
+                                name="password2"
+                                type="password"
+                                label="Mot de passe"
+                                required
+                        ></v-text-field>
 
 
-</div>
+                        <v-btn
+                                :disabled="!valid"
+                                color="success"
+                                @click="validate"
+                        >
+                            Inscription
+                        </v-btn>
+
+                        <v-btn
+                                color="error"
+                                @click="reset"
+                        >
+                            Reset
+                        </v-btn>
+
+
+                    </v-form>
+                </template>
+            </v-row>
+        </v-col>
+
+
+
 
 {{> ./main/footer}}
 

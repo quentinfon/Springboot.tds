@@ -46,6 +46,25 @@
             ></v-textarea>
 
 
+            <v-select
+                    :items="langages"
+                    label="Langage"
+                    dense
+                    outlined
+                    item-text="name"
+                    name="langage"
+            ></v-select>
+
+            <v-select
+                    :items="categories"
+                    label="Categorie"
+                    dense
+                    outlined
+                    item-text="name"
+                    name="categorie"
+            ></v-select>
+
+
             <v-btn
                     :disabled="!valid"
                     color="success"
