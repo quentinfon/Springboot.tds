@@ -222,6 +222,7 @@ public class ScriptController {
         if (connectedUser != null && s != null && s.getOwner().getId() == connectedUser.getId()){
 
             repoScript.delete(s);
+            repoScript.flush();
 
         }
 
