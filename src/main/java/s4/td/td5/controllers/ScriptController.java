@@ -212,7 +212,7 @@ public class ScriptController {
         return "recherche";
     }
 
-    @PostMapping("/script/delete/{id}")
+    @PostMapping("/delete/{id}")
     public RedirectView supp(@PathVariable int id, HttpSession session) {
 
         User connectedUser = (User) session.getAttribute("connectedUser");

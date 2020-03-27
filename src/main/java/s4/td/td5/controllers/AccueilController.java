@@ -38,6 +38,7 @@ public class AccueilController {
 
         User connectedUser = (User) session.getAttribute("connectedUser");
 
+        vue.addData("dialog", false);
         vue.addDataRaw("headers","[ { text: 'Titre', align: 'start', sortable: false, value: 'title' }, { text: 'Description', value: 'description' }, { text: 'Date dernière modification', value: 'strCreationDate' }, { text: 'Actions', value: 'actions', sortable: false } ]");
 
         List<Script> scripts = null;
@@ -46,7 +47,7 @@ public class AccueilController {
             scripts = repoScript.findByOwner(connectedUser);
         }
         vue.addData("listeScripts", scripts);
-        vue.addData("dialog", false);
+
 
 
         if(connectedUser != null){
