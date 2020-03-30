@@ -10,6 +10,11 @@ You can test the application <a href ="https://scripts-manager.herokuapp.com/ind
 The application is realised in spring boot using vuejs and vuetify.
 
 ## TD1
+Introduction to spring.
 <a href ="https://github.com/quentinfon/Springboot.tds/tree/td1">link to the repository</a>
 ## TD2
-<a href ="https://github.com/quentinfon/Springboot.tds/tree/td1">link to the repository</a>
+Small application using JPA, Hibernate and H2 to manage organization and their users.
+<a href ="https://github.com/quentinfon/Springboot.tds/tree/td2">link to the repository</a>
+## TD3
+Implementation of vuejs in the organization application.
+<a href ="https://github.com/quentinfon/Springboot.tds/tree/td3">link to the repository</a>
